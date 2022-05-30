@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Checkers
+
+  Created by mac on 3.04.22.
+  
+*/
+
+//MARK: LOADINGVC
+//MARK: SETTINGSVC
+"labelSettings_text" = " Настройки";
+"labelLanguage_text" = "Выбрать язык";
+"labelBgImage_text" = "Выбрать фон";
+"buttonBack_text" = "Назад";

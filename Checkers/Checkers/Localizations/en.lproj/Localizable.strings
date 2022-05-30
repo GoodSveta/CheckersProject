@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Checkers
+
+  Created by mac on 3.04.22.
+  
+*/
+//MARK: SETTINGS
+"labelSettings_text" = "Settings";
+"labelLanguage_text" = "Сhoose language";
+"labelBgImage_text" = "Сhoose a background";
+"buttonBack_text" = "Back";

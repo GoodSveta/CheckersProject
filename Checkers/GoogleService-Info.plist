@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>887695944664-4dsdkkebpjsv4phu8hso1dhquusi6uo8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.887695944664-4dsdkkebpjsv4phu8hso1dhquusi6uo8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAYRf0qcST3blOwHzcP-dUZTYE0UMMLoGU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>887695944664</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>by.teachmeskills.Checkers</string>
+	<key>PROJECT_ID</key>
+	<string>checkers-8bb37</string>
+	<key>STORAGE_BUCKET</key>
+	<string>checkers-8bb37.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:887695944664:ios:71c9f6e08887e20600e0ad</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-8903826022235969~8143481611</string>
+</dict>
+</plist>
