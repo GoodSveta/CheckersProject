@@ -171,7 +171,7 @@ class GameViewController: UIViewController {
     func addNamePlayer() {
         labelPlayerGray.textAlignment = .center
         labelPlayerWhite.textAlignment = .center
-        labelPlayerGray.text = "Player name g :"
+        labelPlayerGray.text = "Player name:"
         labelPlayerGray.font = UIFont(name: "Marker felt", size: 15)
         labelPlayerWhite.text = "Player name:"
         labelPlayerWhite.font = UIFont(name: "Marker felt", size: 15)
