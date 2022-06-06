@@ -51,8 +51,8 @@ class SettingsViewController: UIViewController {
             }
             let cancelImageBg = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteImageBg = UIAlertAction(title: "Delete", style: .default) { _ in
-            self.imageView.image = UIImage(named: "empty-image")
-            Settings.shared.imageBackground = UIImage(named: "empty-image")
+            self.imageView.image = UIImage(named: "13")
+            Settings.shared.imageBackground = UIImage(named: "13")
             
         }
    
