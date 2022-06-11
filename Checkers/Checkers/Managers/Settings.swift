@@ -39,19 +39,19 @@ class Settings: NSObject {
         get { if let dataImage = UserDefaults.standard.data(forKey: UserDefaultsKeys.imageBackground.rawValue) {
             return UIImage(data: dataImage)
         }
-            return UIImage(named: "empty-image")
+            return UIImage(named: "13")
         }
     }
     
-    var makeMove: Bool {
-        set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.makeMove.rawValue)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AuthStateDidChange"), object: nil)
-            
-            if !newValue {  }
-        }
-        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.makeMove.rawValue) }
-    }
+//    var makeMove: Bool {
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.makeMove.rawValue)
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AuthStateDidChange"), object: nil)
+//            
+//            if !newValue {  }
+//        }
+//        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.makeMove.rawValue) }
+//    }
 
     let lanCode = ["ru", "en"]
 

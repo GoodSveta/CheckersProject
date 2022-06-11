@@ -9,6 +9,12 @@ import UIKit
 enum CheckerMove: Int {
     case grayMove, whiteMove
 }
+enum checkerTag: Int {
+    case fourteenTop = 14
+    case eighteenTop = 18
+    case fourteenBottom = -14
+    case eighteenBottom = -18
+}
 
 class Checker: NSObject, NSCoding, NSSecureCoding {
     static var supportsSecureCoding: Bool = true
@@ -51,8 +57,8 @@ class GameViewController: UIViewController {
     var namePlayerGray = UILabel()
     var namePlayerWhite = UILabel()
     var labelPlayerMove = UILabel()
-    var chessScoreGray = [Int]()
-    var chessScoreWhite = [Int]()
+    var chessScoreGray: Int = 0
+    var chessScoreWhite: Int = 0
     var labelScoreGray = UILabel()
     var labelScoreWhite = UILabel()
     var buttonReset = UIButton(type: .system)
@@ -72,7 +78,7 @@ class GameViewController: UIViewController {
         return view
     }()
     
-    var currentMove: CheckerMove = .grayMove
+    var currentMove: CheckerMove = .whiteMove
     var saveCurrentMove: CheckerMove?
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -183,8 +189,8 @@ class GameViewController: UIViewController {
         namePlayerWhite.textColor = #colorLiteral(red: 0.2088463306, green: 0.2088463306, blue: 0.2088463306, alpha: 1)
         labelScoreGray.textAlignment = .center
         labelScoreWhite.textAlignment = .center
-        labelScoreGray.text = "\(chessScoreGray.count)"
-        labelScoreWhite.text = "\(chessScoreWhite.count)"
+        //        labelScoreGray.text = "\(chessScoreGray.count)"
+        //        labelScoreWhite.text = "\(chessScoreWhite.count)"
         labelScoreGray.font = UIFont(name: "Marker felt", size: 15)
         labelScoreWhite.font = UIFont(name: "Marker felt", size: 15)
         labelScoreGray.textColor = #colorLiteral(red: 0.2088463306, green: 0.2088463306, blue: 0.2088463306, alpha: 1)
@@ -246,34 +252,350 @@ class GameViewController: UIViewController {
         return checker
     }
     
+    @objc func panGestureBacklight(gesture: UIPanGestureRecognizer) {
+        
+    }
+    
+    func nextMove(gesture: UIPanGestureRecognizer) -> Bool {
+        let checker = gesture.view
+        let view_ch = checker?.superview
+        
+        for view in board.subviews {
+            if  {
+             return true
+            } else {
+                return false
+            }
+                
+        }
+        
+    }
+    
     
     @objc func panGesture(gesture: UIPanGestureRecognizer) {
         guard let checker = gesture.view, let view_ch = checker.superview else {return}
+
         let filter = board.subviews.filter{($0.tag == view_ch.tag + 7 || $0.tag == view_ch.tag + 9)}
         let filterBottom = board.subviews.filter{($0.tag == view_ch.tag - 7 || $0.tag == view_ch.tag - 9)}
+        let filterFourTop = board.subviews.filter{($0.tag == view_ch.tag + 4)}
+        let filterFiveTop = board.subviews.filter{($0.tag == view_ch.tag + 5)}
         let filterSevenTop = board.subviews.filter{($0.tag == view_ch.tag + 7)}
         let filterNineTop = board.subviews.filter{($0.tag == view_ch.tag + 9)}
+        let filterElevenTop = board.subviews.filter{($0.tag == view_ch.tag + 11)}
+        let filterFourteenTop = board.subviews.filter{($0.tag == view_ch.tag + 14)}
+        let filterEighteenTop = board.subviews.filter{($0.tag == view_ch.tag + 18)}
+        let filterNineteenTop = board.subviews.filter{($0.tag == view_ch.tag + 19)}
+        let filterTwentyOneTop = board.subviews.filter{($0.tag == view_ch.tag + 21)}
+        let filterTwentytwoTop = board.subviews.filter{($0.tag == view_ch.tag + 22)}
+        let filterTwentythreeTop = board.subviews.filter{($0.tag == view_ch.tag + 23)}
+        let filterTwentyfiveTop = board.subviews.filter{($0.tag == view_ch.tag + 25)}
+        let filterTwentysevenTop = board.subviews.filter{($0.tag == view_ch.tag + 27)}
+        let filterThirtytwoTop = board.subviews.filter{($0.tag == view_ch.tag + 32)}
+        let filterTwentyEightTop = board.subviews.filter{($0.tag == view_ch.tag + 28)}
+        let filterTwentyNineTop = board.subviews.filter{($0.tag == view_ch.tag + 29)}
+        let filterThirtyFiveTop = board.subviews.filter{($0.tag == view_ch.tag + 35)}
+        let filterThirtysixTop = board.subviews.filter{($0.tag == view_ch.tag + 36)}
+        let filterThirtysevenTop = board.subviews.filter{($0.tag == view_ch.tag + 37)}
+        let filterFortythreeTop = board.subviews.filter{($0.tag == view_ch.tag + 43)}
+        let filterFortyFiveTop = board.subviews.filter{($0.tag == view_ch.tag + 45)}
+        let filterFortysixTop = board.subviews.filter{($0.tag == view_ch.tag + 46)}
+        let filterFiftyTop = board.subviews.filter{($0.tag == view_ch.tag + 50)}
+        let filterFiftyfourTop = board.subviews.filter{($0.tag == view_ch.tag + 54)}
+        let filterFourBottom = board.subviews.filter{($0.tag == view_ch.tag - 4)}
+        let filterFiveBottom = board.subviews.filter{($0.tag == view_ch.tag - 5)}
         let filterSevenBottom = board.subviews.filter{($0.tag == view_ch.tag - 7)}
         let filterNineBottom = board.subviews.filter{($0.tag == view_ch.tag - 9)}
+        let filterElevenBottom = board.subviews.filter{($0.tag == view_ch.tag - 11)}
+        let filterFourteenBottom = board.subviews.filter{($0.tag == view_ch.tag - 14)}
+        let filterEighteenBottom = board.subviews.filter{($0.tag == view_ch.tag - 18)}
+        let filterNineteenBottom = board.subviews.filter{($0.tag == view_ch.tag - 19)}
+        let filterTwentyOneBottom = board.subviews.filter{($0.tag == view_ch.tag - 21)}
+        let filterTwentytwoBottom = board.subviews.filter{($0.tag == view_ch.tag - 22)}
+        let filterTwentythreeBottom = board.subviews.filter{($0.tag == view_ch.tag - 23)}
+        let filterTwentyfiveBottom = board.subviews.filter{($0.tag == view_ch.tag - 25)}
+        let filterTwentyEightBottom = board.subviews.filter{($0.tag == view_ch.tag - 28)}
+        let filterThirtytwoBottom = board.subviews.filter{($0.tag == view_ch.tag - 32)}
+        let filterThirtyfiveBottom = board.subviews.filter{($0.tag == view_ch.tag - 35)}
+        let filterThirtysixBottom = board.subviews.filter{($0.tag == view_ch.tag - 36)}
+        let filterThirtysevenBottom = board.subviews.filter{($0.tag == view_ch.tag - 37)}
+        let filterTwentysevenBottom = board.subviews.filter{($0.tag == view_ch.tag - 27)}
+        let filterTwentyNineBottom = board.subviews.filter{($0.tag == view_ch.tag - 29)}
+        let filterFortythreeBottom = board.subviews.filter{($0.tag == view_ch.tag - 43)}
+        let filterFortyFiveBottom = board.subviews.filter{($0.tag == view_ch.tag - 45)}
+        let filterFortysixBottom = board.subviews.filter{($0.tag == view_ch.tag - 46)}
+        let filterFiftyfourBottom = board.subviews.filter{($0.tag == view_ch.tag - 54)}
+        
         
         if gesture.state == .began {
             board.bringSubviewToFront(view_ch)
+            
+//MARK: backlight GRAY (right plus)
             for view in board.subviews {
-                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
-                    if view.backgroundColor != .white, view.subviews.isEmpty,  (filter.first(where: {$0.subviews.isEmpty}) != nil) {
+                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 18)) {
+                    if view.subviews.isEmpty, view.backgroundColor != .white,
+                       filterNineTop.first?.subviews.first?.backgroundColor == .white {
+                        filterSevenTop.first?.layer.borderWidth = 0
+                        view.layer.borderColor = UIColor.green.cgColor
+                        view.layer.borderWidth = 3
+                    }
+                } else {
+                    if (view.tag == (view_ch.tag + 4)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterFourTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterElevenTop.first?.subviews.first?.backgroundColor == .white  {
+                            view.layer.borderColor = UIColor.green.cgColor
+                            view.layer.borderWidth = 3
+                }
+                    } else {
+                        if (view.tag == (view_ch.tag + 32)) {
+                            if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentyfiveTop.first?.subviews.first?.backgroundColor == .white  {
+                                view.layer.borderColor = UIColor.green.cgColor
+                                view.layer.borderWidth = 3
+                    }
+                        }  else {
+                            if (view.tag == (view_ch.tag + 36)) {
+                                if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white  {
+                                    view.layer.borderColor = UIColor.green.cgColor
+                                    view.layer.borderWidth = 3
+                        }
+                            }  else {
+                                if (view.tag == (view_ch.tag + 54)) {
+                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterFortyFiveTop.first?.subviews.first?.backgroundColor == .white  {
+                                        view.layer.borderColor = UIColor.green.cgColor
+                                        view.layer.borderWidth = 3
+                            }
+                                } else {
+                                    if (view.tag == (view_ch.tag + 22)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyNineTop.first?.subviews.first?.backgroundColor == .white  {
+                                            view.layer.borderColor = UIColor.green.cgColor
+                                            view.layer.borderWidth = 3
+                                }
+                                    } else {
+                                        if (view.tag == (view_ch.tag + 50)) {
+                                            if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterFortythreeTop.first?.subviews.first?.backgroundColor == .white  {
+                                                view.layer.borderColor = UIColor.green.cgColor
+                                                view.layer.borderWidth = 3
+                                    }
+                                        }
+//MARK: backlight GRAY (left plus)
+                else  {
+                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 14)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white,
+                           filterSevenTop.first?.subviews.first?.backgroundColor == .white {
+                            filterNineTop.first?.layer.borderWidth = 0
+                            view.layer.borderColor = UIColor.green.cgColor
+                            view.layer.borderWidth = 3
+                         }
+                        } else {
+                            if (view.tag == (view_ch.tag + 28)) {
+                                if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white {
+                                    view.layer.borderColor = UIColor.green.cgColor
+                                    view.layer.borderWidth = 3
+                        }
+                            } else {
+                                if (view.tag == (view_ch.tag + 42)) {
+                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil && filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white && filterThirtyFiveTop.first?.subviews.first?.backgroundColor == .white  {
+                                        view.layer.borderColor = UIColor.green.cgColor
+                                        view.layer.borderWidth = 3
+                            }
+                                } else {
+                                    if (view.tag == (view_ch.tag - 4)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenTop.first?.subviews.first?.backgroundColor == .white &&  filterFiveTop.first?.subviews.first?.backgroundColor == .white  {
+                                            view.layer.borderColor = UIColor.green.cgColor
+                                            view.layer.borderWidth = 3
+                                    }
+                                        } else {
+                                            if (view.tag == (view_ch.tag + 10)) {
+                                                if view.subviews.isEmpty, view.backgroundColor != .white,  filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                    filterSevenTop.first?.subviews.first?.backgroundColor == .white &&
+                                                    filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white &&
+                                                    filterNineteenTop.first?.subviews.first?.backgroundColor == .white {
+                                                    view.layer.borderColor = UIColor.green.cgColor
+                                                    view.layer.borderWidth = 3
+                                        }
+                                            }
+                                            else {
+                                                if (view.tag == (view_ch.tag + 32)) {
+                                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoTop.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                        filterSevenTop.first?.subviews.first?.backgroundColor == .white &&
+                                                        filterTwentythreeTop.first?.subviews.first?.backgroundColor == .white {
+                                                        view.layer.borderColor = UIColor.green.cgColor
+                                                        view.layer.borderWidth = 3
+                                            }
+                                                } else {
+                                                    if (view.tag == (view_ch.tag + 46)) {
+                                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                            filterFortysixTop.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                            filterSevenTop.first?.subviews.first?.backgroundColor == .white &&
+                                                            filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white &&
+                                                            filterThirtysevenTop.first?.subviews.first?.backgroundColor == .white {
+                                                            view.layer.borderColor = UIColor.green.cgColor
+                                                            view.layer.borderWidth = 3
+                                                }
+//MARK: backlight GRAY (right minus)
+                    } else {
+                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 18)) {
+                            if view.subviews.isEmpty, view.backgroundColor != .white,
+                               filterNineBottom.first?.subviews.first?.backgroundColor == .white {
+                                filterSevenBottom.first?.layer.borderWidth = 0
+                                view.layer.borderColor = UIColor.green.cgColor
+                                view.layer.borderWidth = 3
+                            }
+                        } else {
+                            if (view.tag == (view_ch.tag - 4)) {
+                                if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil &&  filterFourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterElevenBottom.first?.subviews.first?.backgroundColor == .white  {
+                                    view.layer.borderColor = UIColor.green.cgColor
+                                    view.layer.borderWidth = 3
+                        }
+                            } else {
+                                if (view.tag == (view_ch.tag - 32)) {
+                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyfiveBottom.first?.subviews.first?.backgroundColor == .white  {
+                                        view.layer.borderColor = UIColor.green.cgColor
+                                        view.layer.borderWidth = 3
+                            }
+                                }  else {
+                                    if (view.tag == (view_ch.tag - 36)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white  {
+                                            view.layer.borderColor = UIColor.green.cgColor
+                                            view.layer.borderWidth = 3
+                                }
+                                    }  else {
+                                        if (view.tag == (view_ch.tag - 54)) {
+                                            if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterFortyFiveBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                view.layer.borderColor = UIColor.green.cgColor
+                                                view.layer.borderWidth = 3
+                                    }
+                                        } else {
+                                            if (view.tag == (view_ch.tag - 22)) {
+                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyNineBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                    view.layer.borderColor = UIColor.green.cgColor
+                                                    view.layer.borderWidth = 3
+                                        }
+                                            } else {
+                                                if (view.tag == (view_ch.tag - 50)) {
+                                                    if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterFortythreeBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                        view.layer.borderColor = UIColor.green.cgColor
+                                                        view.layer.borderWidth = 3
+                                            }
+//MARK: backlight GRAY (left minus)
+                        } else {
+                            if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 14)) {
+                                if view.subviews.isEmpty, view.backgroundColor != .white,
+                                   filterSevenBottom.first?.subviews.first?.backgroundColor == .white {
+                                    filterNineBottom.first?.layer.borderWidth = 0
+                                    view.layer.borderColor = UIColor.green.cgColor
+                                    view.layer.borderWidth = 3
+                                 }
+                                } else {
+                                    if (view.tag == (view_ch.tag - 28)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .white {
+                                            view.layer.borderColor = UIColor.green.cgColor
+                                            view.layer.borderWidth = 3
+                                }
+                                    } else {
+                                        if (view.tag == (view_ch.tag - 42)) {
+                                            if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .white && filterThirtyfiveBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                view.layer.borderColor = UIColor.green.cgColor
+                                                view.layer.borderWidth = 3
+                                    }
+                                        } else {
+                                            if (view.tag == (view_ch.tag + 4)) {
+                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenBottom.first?.subviews.first?.backgroundColor == .white &&  filterFiveBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                    view.layer.borderColor = UIColor.green.cgColor
+                                                    view.layer.borderWidth = 3
+                                            }
+                                                } else {
+                                                    if (view.tag == (view_ch.tag - 10)) {
+                                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                            filterSevenBottom.first?.subviews.first?.backgroundColor == .white &&
+                                                            filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .white &&
+                                                            filterNineteenBottom.first?.subviews.first?.backgroundColor == .white {
+                                                            view.layer.borderColor = UIColor.green.cgColor
+                                                            view.layer.borderWidth = 3
+                                                }
+                                                    }
+                                                    else {
+                                                        if (view.tag == (view_ch.tag - 32)) {
+                                                            if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                                filterSevenBottom.first?.subviews.first?.backgroundColor == .white &&
+                                                                filterTwentythreeBottom.first?.subviews.first?.backgroundColor == .white {
+                                                                view.layer.borderColor = UIColor.green.cgColor
+                                                                view.layer.borderWidth = 3
+                                                    }
+                                                        } else {
+                                                            if (view.tag == (view_ch.tag - 46)) {
+                                                                if view.subviews.isEmpty, view.backgroundColor != .white,  filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                                    filterFortysixBottom.first(where: {$0.subviews.isEmpty}) != nil &&
+                                                                    filterSevenBottom.first?.subviews.first?.backgroundColor == .white &&
+                                                                    filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .white &&
+                                                                    filterThirtysevenBottom.first?.subviews.first?.backgroundColor == .white {
+                                                                    view.layer.borderColor = UIColor.green.cgColor
+                                                                    view.layer.borderWidth = 3
+                                                        }
+                                                }
+                                else {
+//                         CHECK!!!
+                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
+                            if view.backgroundColor != .white, view.subviews.isEmpty,
+                               filter.first(where: {$0.subviews.isEmpty}) != nil ||
+                                ((filterNineTop.first?.subviews.first?.backgroundColor == .gray) || (filterSevenTop.first?.subviews.first?.backgroundColor == .gray)) ||
+                                ((filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterFourteenTop.first(where: {$0.subviews.isEmpty}) == nil) || (filterNineTop.first?.subviews.first?.backgroundColor == .white && filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil)) || (filterSevenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFourteenBottom.first?.subviews.first?.backgroundColor != .white) || (filterNineBottom.first(where: {$0.subviews.isEmpty}) != nil && filterEighteenBottom.first?.subviews.first?.backgroundColor != .white)  {
+                                view.layer.borderColor = UIColor.green.cgColor
+                                view.layer.borderWidth = 3
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+//MARK: backlight WHITE
+
+            for view in board.subviews {
+                if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 18)) {
+                    if view.subviews.isEmpty, view.backgroundColor != .white,
+                       filterNineBottom.first?.subviews.first?.backgroundColor == .gray  {
+                        filterSevenBottom.first?.layer.borderWidth = 0
                         view.layer.borderColor = UIColor.green.cgColor
                         view.layer.borderWidth = 3
                     }
                 } else  {
-                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 9) || view.tag == (view_ch.tag + 14)) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenTop.first(where: {$0.subviews.isEmpty}) == nil), filterSevenTop.first?.subviews.first?.backgroundColor == .white {
+                    if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 14)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white,
+                           filterSevenBottom.first?.subviews.first?.backgroundColor == .gray {
+                            filterNineBottom.first?.layer.borderWidth = 0
                             view.layer.borderColor = UIColor.green.cgColor
                             view.layer.borderWidth = 3
                         }
                     }
                     else {
-                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 18)) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white,   (filterNineTop.first(where: {$0.subviews.isEmpty}) == nil), filterNineTop.first?.subviews.first?.backgroundColor == .white  {
+                        if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 9)) {
+                            if view.backgroundColor != .white, view.subviews.isEmpty,
+                               filterBottom.first(where: {$0.subviews.isEmpty}) != nil ||
+                                ((filterNineBottom.first?.subviews.first?.backgroundColor == .white) || (filterSevenBottom.first?.subviews.first?.backgroundColor == .white)) ||
+                                ((filterSevenBottom.first?.subviews.first?.backgroundColor == .gray && filterFourteenBottom.first(where: {$0.subviews.isEmpty}) == nil) || (filterNineBottom.first?.subviews.first?.backgroundColor == .gray && filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil)) {
                                 view.layer.borderColor = UIColor.green.cgColor
                                 view.layer.borderWidth = 3
                             }
@@ -281,63 +603,50 @@ class GameViewController: UIViewController {
                     }
                 }
             }
-            for view in board.subviews {
-                if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 9)) {
-                    if view.backgroundColor != .white, view.subviews.isEmpty,  (filterBottom.first(where: {$0.subviews.isEmpty}) != nil) {
-                        view.layer.borderColor = UIColor.green.cgColor
-                        view.layer.borderWidth = 3
-                    }
-                } else  {
-                    if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 9) || view.tag == (view_ch.tag - 14)) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenBottom.first(where: {$0.subviews.isEmpty}) == nil), filterSevenBottom.first?.subviews.first?.backgroundColor == .gray {
-                            view.layer.borderColor = UIColor.green.cgColor
-                            view.layer.borderWidth = 3
-                        }
-                    }
-                    else {
-                        if checker.backgroundColor == .white, (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 18)) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white,   (filterNineBottom.first(where: {$0.subviews.isEmpty}) == nil), filterNineBottom.first?.subviews.first?.backgroundColor == .gray {
-                                view.layer.borderColor = UIColor.green.cgColor
-                                view.layer.borderWidth = 3
-                            }
-                        }
-                    }
-                }
-            }
+
         } else if gesture.state == .changed {
             let translation = gesture.translation(in: board)
+            //            checker.center = CGPoint(x: checker.center.x + translation.x, y: checker.center.y + translation.y)
+            //            gesture.setTranslation(.zero, in: board)
             checker.transform = CGAffineTransform(
                 translationX: translation.x, y: translation.y)
             
+            
+            
         } else if gesture.state == .ended {
+//  MARK: MOVE GRAY FORWARD
             for view in board.subviews {
                 if view.frame.contains(gesture.location(in: board)) {
                     if checker.backgroundColor == .gray,
                        currentMove == .grayMove,
-                       (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white, filter.first(where: {$0.subviews.isEmpty}) != nil {
+                       (view.tag == (view_ch.tag + 14)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenTop.first(where: {$0.subviews.isEmpty}) == nil), filterSevenTop.first?.subviews.first?.backgroundColor == .white {
+                            filterSevenTop.first?.subviews.first?.removeFromSuperview()
+                            chessScoreGray += 1
+                            labelScoreGray.text = "\(chessScoreGray)"
                             view.addSubview(checker)
                             gesture.view?.transform = .identity
                             checker.frame.origin = CGPoint(
                                 x: view.frame.height / 8,
                                 y: view.frame.height / 8)
                             for view in board.subviews {
+//                                if (view.tag == (view_ch.tag + 14))
                                 if view.backgroundColor != .white {
                                     view.backgroundColor = .black
                                     view.layer.borderWidth = 0
                                 }
                             }
-                            currentMove = .whiteMove
+                            currentMove = .grayMove
                             saveCurrentMove = currentMove
                         }
                     } else {
                         if checker.backgroundColor == .gray,
                            currentMove == .grayMove,
-                           (view.tag == (view_ch.tag + 9) || view.tag == (view_ch.tag + 14)) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenTop.first(where: {$0.subviews.isEmpty}) == nil), filterSevenTop.first?.subviews.first?.backgroundColor == .white {
-                                filterSevenTop.first?.subviews.first?.removeFromSuperview()
-                                chessScoreGray.append(1)
-                                print(chessScoreGray.count)
+                           (view.tag == (view_ch.tag + 18)) {
+                            if view.subviews.isEmpty, view.backgroundColor != .white, (filterNineTop.first(where: {$0.subviews.isEmpty}) == nil), filterNineTop.first?.subviews.first?.backgroundColor == .white  {
+                                filterNineTop.first?.subviews.first?.removeFromSuperview()
+                                chessScoreGray += 1
+                                labelScoreGray.text = "\(chessScoreGray)"
                                 view.addSubview(checker)
                                 gesture.view?.transform = .identity
                                 checker.frame.origin = CGPoint(
@@ -355,11 +664,10 @@ class GameViewController: UIViewController {
                         } else {
                             if checker.backgroundColor == .gray,
                                currentMove == .grayMove,
-                               (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 18)) {
-                                if view.subviews.isEmpty, view.backgroundColor != .white,   (filterNineTop.first(where: {$0.subviews.isEmpty}) == nil), filterNineTop.first?.subviews.first?.backgroundColor == .white  {
-                                    filterNineTop.first?.subviews.first?.removeFromSuperview()
-                                    chessScoreGray.append(1)
-                                    print(chessScoreGray.count)
+                               (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
+                                if view.subviews.isEmpty, view.backgroundColor != .white, ((filterFourteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .white) || (filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .white))
+                                //                                   filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil
+                                {
                                     view.addSubview(checker)
                                     gesture.view?.transform = .identity
                                     checker.frame.origin = CGPoint(
@@ -371,11 +679,77 @@ class GameViewController: UIViewController {
                                             view.layer.borderWidth = 0
                                         }
                                     }
-                                    currentMove = .grayMove
+                                    currentMove = .whiteMove
                                     saveCurrentMove = currentMove
-                                    
                                 }
                             } else {
+//   MARK: MOVE GRAY BACK
+                            if checker.backgroundColor == .gray,
+                                  currentMove == .grayMove,
+                                  (view.tag == (view_ch.tag - 14)) {
+                                   if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .white {
+                                       filterSevenBottom.first?.subviews.first?.removeFromSuperview()
+                                       chessScoreGray += 1
+                                       labelScoreGray.text = "\(chessScoreGray)"
+                                       view.addSubview(checker)
+                                       gesture.view?.transform = .identity
+                                       checker.frame.origin = CGPoint(
+                                           x: view.frame.height / 8,
+                                           y: view.frame.height / 8)
+                                       for view in board.subviews {
+                                           if view.backgroundColor != .white {
+                                               view.backgroundColor = .black
+                                               view.layer.borderWidth = 0
+                                           }
+                                       }
+                                       currentMove = .grayMove
+                                       saveCurrentMove = currentMove
+                                   }
+                               } else {
+                                   if checker.backgroundColor == .gray,
+                                      currentMove == .grayMove,
+                                      (view.tag == (view_ch.tag - 18)) {
+                                       if view.subviews.isEmpty, view.backgroundColor != .white, filterNineBottom.first?.subviews.first?.backgroundColor == .white  {
+                                           filterNineBottom.first?.subviews.first?.removeFromSuperview()
+                                           chessScoreGray += 1
+                                           labelScoreGray.text = "\(chessScoreGray)"
+                                           view.addSubview(checker)
+                                           gesture.view?.transform = .identity
+                                           checker.frame.origin = CGPoint(
+                                               x: view.frame.height / 8,
+                                               y: view.frame.height / 8)
+                                           for view in board.subviews {
+                                               if view.backgroundColor != .white {
+                                                   view.backgroundColor = .black
+                                                   view.layer.borderWidth = 0
+                                               }
+                                           }
+                                           currentMove = .grayMove
+                                           saveCurrentMove = currentMove
+                                       }
+                                   } else {
+                                       if checker.backgroundColor == .gray,
+                                          currentMove == .grayMove,
+                                          (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 9)) {
+                                           if view.subviews.isEmpty, view.backgroundColor != .white {
+                                               view.addSubview(checker)
+                                               gesture.view?.transform = .identity
+                                               checker.frame.origin = CGPoint(
+                                                   x: view.frame.height / 8,
+                                                   y: view.frame.height / 8)
+                                               for view in board.subviews {
+                                                   if view.backgroundColor != .white {
+                                                       view.backgroundColor = .black
+                                                       view.layer.borderWidth = 0
+                                                   }
+                                               }
+                                               currentMove = .whiteMove
+                                               saveCurrentMove = currentMove
+                                           }
+                                       }
+                            
+//  MARK: MOVE WHITE FORWARD
+                            else {
                                 for view in board.subviews {
                                     if view.frame.contains(gesture.location(in: board)) {
                                         if currentMove == .whiteMove,
@@ -396,7 +770,6 @@ class GameViewController: UIViewController {
                                                 }
                                                 currentMove = .grayMove
                                                 saveCurrentMove = currentMove
-                                                
                                             }
                                         } else {
                                             for view in board.subviews {
@@ -406,8 +779,8 @@ class GameViewController: UIViewController {
                                                        (view.tag == (view_ch.tag - 9) || view.tag == (view_ch.tag - 14)) {
                                                         if view.subviews.isEmpty, view.backgroundColor != .white, (filterSevenBottom.first(where: {$0.subviews.isEmpty}) == nil) {
                                                             filterSevenBottom.first?.subviews.first?.removeFromSuperview()
-                                                            chessScoreWhite.append(1)
-                                                            print(chessScoreWhite.count)
+                                                            chessScoreWhite += 1
+                                                            labelScoreWhite.text = "\(chessScoreWhite)"
                                                             view.addSubview(checker)
                                                             gesture.view?.transform = .identity
                                                             checker.frame.origin = CGPoint(
@@ -432,8 +805,8 @@ class GameViewController: UIViewController {
                                                                    (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 18)) {
                                                                     if view.subviews.isEmpty, view.backgroundColor != .white,  (filterNineBottom.first(where: {$0.subviews.isEmpty}) == nil) {
                                                                         filterNineBottom.first?.subviews.first?.removeFromSuperview()
-                                                                        chessScoreWhite.append(1)
-                                                                        print(chessScoreWhite.count)
+                                                                        chessScoreWhite += 1
+                                                                        labelScoreWhite.text = "\(chessScoreWhite)"
                                                                         view.addSubview(checker)
                                                                         gesture.view?.transform = .identity
                                                                         checker.frame.origin = CGPoint(
@@ -463,6 +836,7 @@ class GameViewController: UIViewController {
                                                                     
                                                                     UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
                                                                         gesture.view?.transform = .identity
+                                                                        //
                                                                     }
                                                                     for view in board.subviews {
                                                                         if view.backgroundColor != .white {
@@ -483,10 +857,16 @@ class GameViewController: UIViewController {
                         }
                     }
                 }
+                //                    else { UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
+                //                    gesture.view?.transform = .identity
+                //                }
+                //                }
             }
         }
     }
-    
+            }
+        }
+    }
     
     func setupAction() {
         buttonReset.addTarget(self, action: #selector(resetBoard), for: .touchUpInside)
@@ -494,7 +874,6 @@ class GameViewController: UIViewController {
         buttonLoad.addTarget(self, action: #selector(loadSaveBoard), for: .touchUpInside)
         buttonBack.addTarget(self, action: #selector(buttonBackClick), for: .touchUpInside)
     }
-    
     @objc func resetBoard() {
         let switchAlert = UIAlertController(title: "Are you sure you want to reset?", message: "The game will restart", preferredStyle: .actionSheet)
         
@@ -506,21 +885,22 @@ class GameViewController: UIViewController {
             self.timer.invalidate()
             self.seconds = 0
             self.setupTimer()
+            self.chessScoreGray = 0
+            self.chessScoreWhite = 0
+            self.labelScoreGray.text = "\(self.chessScoreGray)"
+            self.labelScoreWhite.text = "\(self.chessScoreWhite)"
         }))
         switchAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
         }))
         
         present(switchAlert, animated: true, completion: nil)
-        
     }
     
     //MARK: SAVE
     @objc func saveBoardWithCheckers() {
         
         let switchAlert = UIAlertController(title: "Save?", message: "", preferredStyle: .actionSheet)
-        
         switchAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-            
             self.arrayCheckers.removeAll()
             for view in self.board.subviews {
                 if !view.subviews.isEmpty {
@@ -532,7 +912,7 @@ class GameViewController: UIViewController {
                 UserDefaults.standard.set(data, forKey: "Checkers")
             }
             UserDefaults.standard.set(self.labelTimer.text, forKey: "Timer")
-            UserDefaults.standard.set(self.saveCurrentMove, forKey: "CurrentMove")
+            UserDefaults.standard.set(self.saveCurrentMove?.rawValue, forKey: "CurrentMove")
         }))
         
         switchAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
@@ -542,7 +922,6 @@ class GameViewController: UIViewController {
     }
     
     @objc func loadSaveBoard() {
-        
         for view in self.board.subviews {
             view.subviews.first?.removeFromSuperview()
         }
@@ -566,8 +945,22 @@ class GameViewController: UIViewController {
         labelTimer.text = UserDefaults.standard.object(forKey: "Timer") as? String
         namePlayerGray.text = UserDefaults.standard.object(forKey: "namePlayerGray") as? String
         namePlayerGray.text = UserDefaults.standard.object(forKey: "namePlayerWhite") as? String
-        currentMove = UserDefaults.standard.object(forKey: "CurrentMove") as! CheckerMove
+        currentMove = UserDefaults.standard.object(forKey: "CurrentMove") as? CheckerMove ?? .whiteMove
     }
+//    func finishGame() {
+//        gameTimer.invalidate()
+//        Settings.shared.resetData()
+//        showFinishGameAlert()
+//    }
+//    @objc func showFinishGameAlert(){
+//        let winnerColor = currentStep.rawValue.uppercased()
+//        let alert = UIAlertController(title: "Finish game", message: winnerColor + " is winner!", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Super", style: .default, handler: { action in
+//            self.goBack()
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     @objc func buttonBackClick() {
         guard let mainVC = MainMenuViewController.getInstanceViewController else { return }
