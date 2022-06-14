@@ -43,15 +43,15 @@ class Settings: NSObject {
         }
     }
     
-//    var makeMove: Bool {
-//        set {
-//            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.makeMove.rawValue)
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AuthStateDidChange"), object: nil)
-//            
-//            if !newValue {  }
-//        }
-//        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.makeMove.rawValue) }
-//    }
+    var makeMove: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.makeMove.rawValue)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AuthStateDidChange"), object: nil)
+            
+            if !newValue {  }
+        }
+        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.makeMove.rawValue) }
+    }
 
     let lanCode = ["ru", "en"]
 

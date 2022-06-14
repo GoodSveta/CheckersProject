@@ -32,6 +32,7 @@
 		04921F4527B970C100DBEAD6 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921F4427B970C100DBEAD6 /* StartButtonView.swift */; };
 		04921F4727B970F400DBEAD6 /* StartButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04921F4627B970F400DBEAD6 /* StartButtonView.xib */; };
 		04921F4927B98BBD00DBEAD6 /* CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */; };
+		049C2A2428569A0800F7DA83 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C2A2328569A0800F7DA83 /* Game.swift */; };
 		04AD9D6527BD324600CABB59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD9D6427BD324600CABB59 /* SettingsViewController.swift */; };
 		04AD9D6727BD325B00CABB59 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AD9D6627BD325B00CABB59 /* SettingsViewController.storyboard */; };
 		1DB51DE7D9CE36A637FB4D4A /* Pods_Checkers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1208596E5269501B4724053D /* Pods_Checkers.framework */; };
@@ -66,6 +67,7 @@
 		04921F4427B970C100DBEAD6 /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		04921F4627B970F400DBEAD6 /* StartButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartButtonView.xib; sourceTree = "<group>"; };
 		04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAMediaTimingFunction.swift; sourceTree = "<group>"; };
+		049C2A2328569A0800F7DA83 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		04AD9D6427BD324600CABB59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04AD9D6627BD325B00CABB59 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		1208596E5269501B4724053D /* Pods_Checkers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Checkers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 		0481683527B4397500DBCF19 /* Checkers */ = {
 			isa = PBXGroup;
 			children = (
+				049C2A222856996600F7DA83 /* Models */,
 				047E84D527F9960C0000239B /* Localizations */,
 				0481684D27B439B100DBCF19 /* Extensions */,
 				0481684A27B4398300DBCF19 /* Managers */,
@@ -247,6 +250,14 @@
 				04921F4327B96FBB00DBEAD6 /* StartButton */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		049C2A222856996600F7DA83 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				049C2A2328569A0800F7DA83 /* Game.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		04AD9D6327BD320C00CABB59 /* SettingsGame */ = {
@@ -402,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04921F4527B970C100DBEAD6 /* StartButtonView.swift in Sources */,
+				049C2A2428569A0800F7DA83 /* Game.swift in Sources */,
 				0480DE1F27B6C2F6006BEF2B /* MainMenuViewController.swift in Sources */,
 				04AD9D6527BD324600CABB59 /* SettingsViewController.swift in Sources */,
 				0481685727B43A6C00DBCF19 /* StartViewController.swift in Sources */,
