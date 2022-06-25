@@ -18,7 +18,7 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setLocalization()
     }
     
     func loadIntersAds() {
@@ -34,6 +34,12 @@ class MainMenuViewController: UIViewController {
             interstitial?.fullScreenContentDelegate = self
             interstitial?.present(fromRootViewController: self)
         })
+    }
+    
+    private func setLocalization() {
+        buttonAbout.setTitle("button_about".localized, for: .normal)
+        buttonScore.setTitle("button_score".localized, for: .normal)
+        buttonSettings.setTitle("button_settings".localized, for: .normal)
     }
     
     @IBAction func startButtonGestureRecognizer(_ sender: Any) {
@@ -75,14 +81,16 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func scoreTouchUpInside(_ sender: UIButton) {
         guard let scoreVC = ScoreViewController.getInstanceViewController else { return }
-        self.navigationController?.viewControllers = [scoreVC]    }
-    
+        self.navigationController?.viewControllers = [scoreVC]
+    }
     
 }
 
 extension MainMenuViewController: GADFullScreenContentDelegate {
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
+        guard let vc = GameViewController.getInstanceViewController as? GameViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     /// Tells the delegate that the ad will present full screen content.

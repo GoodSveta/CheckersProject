@@ -6,7 +6,6 @@
 //
 import UIKit
 
-
 enum CheckerMove: Int {
     case grayMove, whiteMove
 }
@@ -56,6 +55,7 @@ class GameViewController: UIViewController {
     var chessScoreWhite: Int = 0
     var labelScoreGray = UILabel()
     var labelScoreWhite = UILabel()
+    var checkers: [Checkers] = []
     var buttonReset = UIButton(type: .system)
     var buttonSave = UIButton(type: .system)
     var buttonLoad = UIButton(type: .system)
@@ -63,6 +63,11 @@ class GameViewController: UIViewController {
     var checker = UIView()
     var square = UIView()
     var arrayCheckers = [Checker]()
+    var arrayOfPossibleStepsGray = [Int]()
+    var arrayOfPossibleStepsWhite = [Int]()
+    var arrayOfPossibleStepsQueenBlue = [Int]()
+    var arrayOfPossibleStepsQueenYellow = [Int]()
+    
     lazy var board: UIView = {
         let view = UIView()
         let size = self.view.frame.size.width - 32
@@ -87,7 +92,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupAction()
         addNamePlayer()
         addView()
@@ -149,9 +153,9 @@ class GameViewController: UIViewController {
         buttonSave.layer.cornerRadius = 8
         buttonReset.layer.cornerRadius = 8
         buttonLoad.layer.cornerRadius = 8
-        buttonSave.setTitle("Save", for: .normal)
-        buttonReset.setTitle("Reset", for: .normal)
-        buttonLoad.setTitle("Load", for: .normal)
+        buttonSave.setTitle("button_save".localized, for: .normal)
+        buttonReset.setTitle("button_reset".localized, for: .normal)
+        buttonLoad.setTitle("button_load".localized, for: .normal)
         buttonBack.setImage(UIImage(named: "pngegg.png"), for: .normal)
     }
     
@@ -161,7 +165,12 @@ class GameViewController: UIViewController {
     func setupUI() {
         imageView.image = Settings.shared.imageBackground
         imageView.contentMode = .scaleAspectFill
-        
+        switch currentMove {
+        case .grayMove:
+            labelPlayerWhite.isHidden = true
+        case .whiteMove:
+            labelPlayerGray.isHidden = true
+        }
     }
     
     func setupTimer() {
@@ -172,9 +181,9 @@ class GameViewController: UIViewController {
     func addNamePlayer() {
         labelPlayerGray.textAlignment = .center
         labelPlayerWhite.textAlignment = .center
-        labelPlayerGray.text = "Player name:"
+        labelPlayerGray.text = "namePlayer_black".localized
         labelPlayerGray.font = UIFont(name: "Marker felt", size: 15)
-        labelPlayerWhite.text = "Player name:"
+        labelPlayerWhite.text = "namePlayer_black".localized
         labelPlayerWhite.font = UIFont(name: "Marker felt", size: 15)
         namePlayerGray.text = UserDefaults.standard.object(forKey: "namePlayerGray") as? String
         namePlayerWhite.text = UserDefaults.standard.object(forKey: "namePlayerWhite") as? String
@@ -184,8 +193,6 @@ class GameViewController: UIViewController {
         namePlayerWhite.textColor = #colorLiteral(red: 0.2088463306, green: 0.2088463306, blue: 0.2088463306, alpha: 1)
         labelScoreGray.textAlignment = .center
         labelScoreWhite.textAlignment = .center
-        //        labelScoreGray.text = "\(chessScoreGray.count)"
-        //        labelScoreWhite.text = "\(chessScoreWhite.count)"
         labelScoreGray.font = UIFont(name: "Marker felt", size: 15)
         labelScoreWhite.font = UIFont(name: "Marker felt", size: 15)
         labelScoreGray.textColor = #colorLiteral(red: 0.2088463306, green: 0.2088463306, blue: 0.2088463306, alpha: 1)
@@ -206,7 +213,7 @@ class GameViewController: UIViewController {
                                     width: squareSize,
                                     height: squareSize
                                   )
-                    )
+                         )
                 )
                 view.addSubview(square)
                 
@@ -244,94 +251,8 @@ class GameViewController: UIViewController {
         return checker
     }
     
-    func knockDownGrayChecker(gesture: UIPanGestureRecognizer) -> Bool {
-        guard let checker = gesture.view, let view_ch = checker.superview else {return true}
-        var takeStep: Bool?
-        let filterSevenTop = board.subviews.filter{($0.tag == (view_ch.tag) + 7)}
-        let filterNineTop = board.subviews.filter{($0.tag == (view_ch.tag) + 9)}
-        let filterSevenBottom = board.subviews.filter{($0.tag == (view_ch.tag) - 7)}
-        let filterNineBottom = board.subviews.filter{($0.tag == (view_ch.tag) - 9)}
-        for view in board.subviews {
-            if checker.backgroundColor == .gray, view.tag == (view_ch.tag + 14) {
-                if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenTop.first?.subviews.first?.backgroundColor == .white {
-                    takeStep = true
-                }
-            } else {
-                if checker.backgroundColor == .gray, view.tag == (view_ch.tag + 18) {
-                    if view.subviews.isEmpty, view.backgroundColor != .white, filterNineTop.first?.subviews.first?.backgroundColor == .white {
-                        takeStep = true
-                    }
-                } else {
-                    if checker.backgroundColor == .gray, view.tag == (view_ch.tag - 14) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .white {
-                            takeStep = true
-                        }
-                    } else {
-                        if checker.backgroundColor == .gray, view.tag == (view_ch.tag - 18) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white, filterNineBottom.first?.subviews.first?.backgroundColor == .white {
-                                takeStep = true
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return takeStep ?? false
-    }
-//    check
-    func queenOfCheckers(gesture: UIPanGestureRecognizer) -> Bool {
-        guard let checker = gesture.view, let view_ch = checker.superview else {return true}
-        var queen: Bool?
-        for view in board.subviews {
-        if checker.backgroundColor == .gray && view.tag > 55 {
-            queen = true
-        } else {
-            if checker.backgroundColor == .white && view.tag < 8 {
-                queen = true
-                }
-            }
-        }
-        return queen ?? false
-    }
-    
-    func knockDownWhiteChecker(gesture: UIPanGestureRecognizer) -> Bool {
-        guard let checker = gesture.view, let view_ch = checker.superview else {return true}
-        var takeStep: Bool?
-        let filterSevenTop = board.subviews.filter{($0.tag == (view_ch.tag) + 7)}
-        let filterNineTop = board.subviews.filter{($0.tag == (view_ch.tag) + 9)}
-        let filterSevenBottom = board.subviews.filter{($0.tag == (view_ch.tag) - 7)}
-        let filterNineBottom = board.subviews.filter{($0.tag == (view_ch.tag) - 9)}
-        for view in board.subviews {
-            if checker.backgroundColor == .white, view.tag == (view_ch.tag + 14) {
-                if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenTop.first?.subviews.first?.backgroundColor == .gray {
-                    takeStep = true
-                }
-            } else {
-                if checker.backgroundColor == .white, view.tag == (view_ch.tag + 18) {
-                    if view.subviews.isEmpty, view.backgroundColor != .white, filterNineTop.first?.subviews.first?.backgroundColor == .gray {
-                        takeStep = true
-                    }
-                } else {
-                    if checker.backgroundColor == .white, view.tag == (view_ch.tag - 14) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .gray {
-                            takeStep = true
-                        }
-                    } else {
-                        if checker.backgroundColor == .white, view.tag == (view_ch.tag - 18) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white, filterNineBottom.first?.subviews.first?.backgroundColor == .gray {
-                                takeStep = true
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return takeStep ?? false
-    }
-    
     @objc func panGesture(gesture: UIPanGestureRecognizer) {
         guard let checker = gesture.view, let view_ch = checker.superview else {return}
-        
         let filterSevenTop = board.subviews.filter{($0.tag == view_ch.tag + 7)}
         let filterNineTop = board.subviews.filter{($0.tag == view_ch.tag + 9)}
         let filterSevenBottom = board.subviews.filter{($0.tag == view_ch.tag - 7)}
@@ -351,25 +272,25 @@ class GameViewController: UIViewController {
                 translationX: translation.x, y: translation.y)
             
         } else if gesture.state == .ended {
-//  MARK: MOVE GRAY FORWARD
+            //  MARK: MOVE GRAY FORWARD
+            queenStepsGray(gesture: gesture)
             for view in board.subviews {
                 if view.frame.contains(gesture.location(in: board)) {
-                    if checker.backgroundColor == .gray,
-                       currentMove == .grayMove,
-                       (view.tag == (view_ch.tag + 14)) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenTop.first(where: {$0.subviews.isEmpty}) == nil), filterSevenTop.first?.subviews.first?.backgroundColor == .white {
+                    if (arrayOfPossibleStepsGray.contains(view_ch.tag) || arrayOfPossibleStepsGray.isEmpty), (arrayOfPossibleStepsQueenBlue.contains(view_ch.tag) || arrayOfPossibleStepsQueenBlue.isEmpty), checker.backgroundColor == .gray, currentMove == .grayMove, (view.tag == (view_ch.tag + 14)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white,  (filterSevenTop.first(where: {$0.subviews.isEmpty}) == nil), filterSevenTop.first?.subviews.first?.backgroundColor == .white || filterSevenTop.first?.subviews.first?.backgroundColor == .yellow  {
                             filterSevenTop.first?.subviews.first?.removeFromSuperview()
                             chessScoreGray += 1
                             labelScoreGray.text = "\(chessScoreGray)"
                             finishGame()
-                            if queenOfCheckers(gesture: gesture) == true {
+                            view.addSubview(checker)
+                            if  queenGrayOfCheckers(gesture: gesture) == true {
                                 checker.backgroundColor = .blue
                             }
-                            view.addSubview(checker)
                             gesture.view?.transform = .identity
                             checker.frame.origin = CGPoint(
                                 x: view.frame.height / 8,
                                 y: view.frame.height / 8)
+                            
                             for view in board.subviews {
                                 if knockDownGrayChecker(gesture: gesture) == true {
                                     currentMove = .grayMove
@@ -383,20 +304,22 @@ class GameViewController: UIViewController {
                                     view.layer.borderWidth = 0
                                 }
                             }
+                            canStepGray(gesture: gesture)
+                            canStepWhite(gesture: gesture)
+                            canStepQueenBlue(gesture: gesture)
+                            canStepQueenYellow(gesture: gesture)
                         }
                     } else {
-                        if checker.backgroundColor == .gray,
-                           currentMove == .grayMove,
-                           (view.tag == (view_ch.tag + 18)) {
-                            if view.subviews.isEmpty, view.backgroundColor != .white, (filterNineTop.first(where: {$0.subviews.isEmpty}) == nil), filterNineTop.first?.subviews.first?.backgroundColor == .white  {
+                        if (arrayOfPossibleStepsGray.contains(view_ch.tag) || arrayOfPossibleStepsGray.isEmpty), (arrayOfPossibleStepsQueenBlue.contains(view_ch.tag) || arrayOfPossibleStepsQueenBlue.isEmpty), checker.backgroundColor == .gray, currentMove == .grayMove, (view.tag == (view_ch.tag + 18)) {
+                            if view.subviews.isEmpty, view.backgroundColor != .white, (filterNineTop.first(where: {$0.subviews.isEmpty}) == nil), filterNineTop.first?.subviews.first?.backgroundColor == .white || filterNineTop.first?.subviews.first?.backgroundColor == .yellow   {
                                 filterNineTop.first?.subviews.first?.removeFromSuperview()
                                 chessScoreGray += 1
                                 labelScoreGray.text = "\(chessScoreGray)"
                                 finishGame()
-                                if queenOfCheckers(gesture: gesture) == true {
+                                view.addSubview(checker)
+                                if  queenGrayOfCheckers(gesture: gesture) == true {
                                     checker.backgroundColor = .blue
                                 }
-                                view.addSubview(checker)
                                 gesture.view?.transform = .identity
                                 checker.frame.origin = CGPoint(
                                     x: view.frame.height / 8,
@@ -414,22 +337,24 @@ class GameViewController: UIViewController {
                                         }
                                     }
                                 }
+                                canStepGray(gesture: gesture)
+                                canStepWhite(gesture: gesture)
+                                canStepQueenBlue(gesture: gesture)
+                                canStepQueenYellow(gesture: gesture)
                             }
                         } else {
-                            if checker.backgroundColor == .gray,
-                               currentMove == .grayMove,
-                               (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
+                            if (arrayOfPossibleStepsGray.contains(view_ch.tag) || arrayOfPossibleStepsGray.isEmpty), (arrayOfPossibleStepsQueenBlue.contains(view_ch.tag) || arrayOfPossibleStepsQueenBlue.isEmpty), checker.backgroundColor == .gray || checker.backgroundColor == .blue, currentMove == .grayMove, (view.tag == (view_ch.tag + 7) || view.tag == (view_ch.tag + 9)) {
                                 if view.subviews.isEmpty, view.backgroundColor != .white, ((filterFourteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .white) || (filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .white))
-                                //                                   filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil
                                 {
-                                    if queenOfCheckers(gesture: gesture) == true {
+                                    view.addSubview(checker)
+                                    if  queenGrayOfCheckers(gesture: gesture) == true {
                                         checker.backgroundColor = .blue
                                     }
-                                    view.addSubview(checker)
                                     gesture.view?.transform = .identity
                                     checker.frame.origin = CGPoint(
                                         x: view.frame.height / 8,
                                         y: view.frame.height / 8)
+                                    
                                     for view in board.subviews {
                                         if view.backgroundColor != .white {
                                             view.backgroundColor = .black
@@ -438,18 +363,23 @@ class GameViewController: UIViewController {
                                     }
                                     currentMove = .whiteMove
                                     saveCurrentMove = currentMove
+                                    canStepGray(gesture: gesture)
+                                    canStepWhite(gesture: gesture)
+                                    canStepQueenBlue(gesture: gesture)
+                                    canStepQueenYellow(gesture: gesture)
                                 }
                             } else {
 //   MARK: MOVE GRAY BACK
-                                if checker.backgroundColor == .gray,
-                                   currentMove == .grayMove,
-                                   (view.tag == (view_ch.tag - 14)) {
-                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .white {
+                                if (arrayOfPossibleStepsGray.contains(view_ch.tag) || arrayOfPossibleStepsGray.isEmpty), (arrayOfPossibleStepsQueenBlue.contains(view_ch.tag) || arrayOfPossibleStepsQueenBlue.isEmpty), checker.backgroundColor == .gray, currentMove == .grayMove, (view.tag == (view_ch.tag - 14)) {
+                                    if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .white || filterSevenBottom.first?.subviews.first?.backgroundColor == .yellow {
                                         filterSevenBottom.first?.subviews.first?.removeFromSuperview()
                                         chessScoreGray += 1
                                         labelScoreGray.text = "\(chessScoreGray)"
                                         finishGame()
                                         view.addSubview(checker)
+                                        if  queenGrayOfCheckers(gesture: gesture) == true {
+                                            checker.backgroundColor = .blue
+                                        }
                                         gesture.view?.transform = .identity
                                         checker.frame.origin = CGPoint(
                                             x: view.frame.height / 8,
@@ -467,17 +397,23 @@ class GameViewController: UIViewController {
                                                 }
                                             }
                                         }
+                                        canStepGray(gesture: gesture)
+                                        canStepWhite(gesture: gesture)
+                                        canStepQueenBlue(gesture: gesture)
+                                        canStepQueenYellow(gesture: gesture)
                                     }
                                 } else {
-                                    if checker.backgroundColor == .gray,
-                                       currentMove == .grayMove,
-                                       (view.tag == (view_ch.tag - 18)) {
-                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterNineBottom.first?.subviews.first?.backgroundColor == .white  {
+                                    if (arrayOfPossibleStepsGray.contains(view_ch.tag) || arrayOfPossibleStepsGray.isEmpty), (arrayOfPossibleStepsQueenBlue.contains(view_ch.tag) || arrayOfPossibleStepsQueenBlue.isEmpty), checker.backgroundColor == .gray,
+                                       currentMove == .grayMove, (view.tag == (view_ch.tag - 18)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterNineBottom.first?.subviews.first?.backgroundColor == .white || filterNineBottom.first?.subviews.first?.backgroundColor == .yellow  {
                                             filterNineBottom.first?.subviews.first?.removeFromSuperview()
                                             chessScoreGray += 1
                                             labelScoreGray.text = "\(chessScoreGray)"
                                             finishGame()
                                             view.addSubview(checker)
+                                            if  queenGrayOfCheckers(gesture: gesture) == true {
+                                                checker.backgroundColor = .blue
+                                            }
                                             gesture.view?.transform = .identity
                                             checker.frame.origin = CGPoint(
                                                 x: view.frame.height / 8,
@@ -495,23 +431,90 @@ class GameViewController: UIViewController {
                                                     }
                                                 }
                                             }
+                                            canStepGray(gesture: gesture)
+                                            canStepWhite(gesture: gesture)
+                                            canStepQueenBlue(gesture: gesture)
+                                            canStepQueenYellow(gesture: gesture)
                                         }
-                                    }
 //  MARK: MOVE WHITE FORWARD
-                                    else {
-                                        for view in board.subviews {
-                                            if view.frame.contains(gesture.location(in: board)) {
-                                                if currentMove == .whiteMove,
-                                                   checker.backgroundColor == .white, view.tag == (view_ch.tag - 18) {
-                                                    if view.subviews.isEmpty, view.backgroundColor != .white,  filterNineBottom.first?.subviews.first?.backgroundColor == .gray {
-                                                        filterNineBottom.first?.subviews.first?.removeFromSuperview()
+                                 } else {
+                                        if (arrayOfPossibleStepsWhite.contains(view_ch.tag) || arrayOfPossibleStepsWhite.isEmpty), (arrayOfPossibleStepsQueenYellow.contains(view_ch.tag) || arrayOfPossibleStepsQueenYellow.isEmpty), currentMove == .whiteMove, checker.backgroundColor == .white, view.tag == (view_ch.tag - 18) {
+                                            if view.subviews.isEmpty, view.backgroundColor != .white,  filterNineBottom.first?.subviews.first?.backgroundColor == .gray || filterNineBottom.first?.subviews.first?.backgroundColor == .blue {
+                                                filterNineBottom.first?.subviews.first?.removeFromSuperview()
+                                                chessScoreWhite += 1
+                                                labelScoreWhite.text = "\(chessScoreWhite)"
+                                                finishGame()
+                                                view.addSubview(checker)
+                                                if queenWhiteOfCheckers(gesture: gesture) == true {
+                                                    checker.backgroundColor = .yellow
+                                                }
+                                                gesture.view?.transform = .identity
+                                                checker.frame.origin = CGPoint(
+                                                    x: view.frame.height / 8,
+                                                    y: view.frame.height / 8)
+                                                for view in board.subviews {
+                                                    if view.backgroundColor != .white {
+                                                        view.backgroundColor = .black
+                                                        view.layer.borderWidth = 0
+                                                        if knockDownWhiteChecker(gesture: gesture) == true {
+                                                            currentMove = .whiteMove
+                                                            saveCurrentMove = currentMove
+                                                        } else {
+                                                            currentMove = .grayMove
+                                                            saveCurrentMove = currentMove
+                                                        }
+                                                    }
+                                                }
+                                                canStepGray(gesture: gesture)
+                                                canStepWhite(gesture: gesture)
+                                                canStepQueenBlue(gesture: gesture)
+                                                canStepQueenYellow(gesture: gesture)
+                                            }
+                                        } else {
+                                            if arrayOfPossibleStepsWhite.contains(view_ch.tag) || arrayOfPossibleStepsWhite.isEmpty, (arrayOfPossibleStepsQueenYellow.contains(view_ch.tag) || arrayOfPossibleStepsQueenYellow.isEmpty), currentMove == .whiteMove, checker.backgroundColor == .white, view.tag == (view_ch.tag - 14) {
+                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .gray || filterSevenBottom.first?.subviews.first?.backgroundColor == .blue {
+                                                    filterSevenBottom.first?.subviews.first?.removeFromSuperview()
+                                                    chessScoreWhite += 1
+                                                    labelScoreWhite.text = "\(chessScoreWhite)"
+                                                    finishGame()
+                                                    view.addSubview(checker)
+                                                    if queenWhiteOfCheckers(gesture: gesture) == true {
+                                                        checker.backgroundColor = .yellow
+                                                    }
+                                                    gesture.view?.transform = .identity
+                                                    checker.frame.origin = CGPoint(
+                                                        x: view.frame.height / 8,
+                                                        y: view.frame.height / 8)
+                                                    for view in board.subviews {
+                                                        if view.backgroundColor != .white {
+                                                            view.backgroundColor = .black
+                                                            view.layer.borderWidth = 0
+                                                            if knockDownWhiteChecker(gesture: gesture) == true {
+                                                                currentMove = .whiteMove
+                                                                saveCurrentMove = currentMove
+                                                            } else {
+                                                                currentMove = .grayMove
+                                                                saveCurrentMove = currentMove
+                                                            }
+                                                        }
+                                                    }
+                                                    canStepGray(gesture: gesture)
+                                                    canStepWhite(gesture: gesture)
+                                                    canStepQueenBlue(gesture: gesture)
+                                                    canStepQueenYellow(gesture: gesture)
+                                                }
+                                            } else {
+                                                if arrayOfPossibleStepsWhite.contains(view_ch.tag) || arrayOfPossibleStepsWhite.isEmpty, (arrayOfPossibleStepsQueenYellow.contains(view_ch.tag) || arrayOfPossibleStepsQueenYellow.isEmpty), currentMove == .whiteMove,
+                                                   checker.backgroundColor == .white, view.tag == (view_ch.tag + 18) {
+                                                    if view.subviews.isEmpty, view.backgroundColor != .white,  filterNineTop.first?.subviews.first?.backgroundColor == .gray || filterNineTop.first?.subviews.first?.backgroundColor == .blue {
+                                                        filterNineTop.first?.subviews.first?.removeFromSuperview()
                                                         chessScoreWhite += 1
                                                         labelScoreWhite.text = "\(chessScoreWhite)"
                                                         finishGame()
-                                                        if queenOfCheckers(gesture: gesture) == true {
+                                                        view.addSubview(checker)
+                                                        if queenWhiteOfCheckers(gesture: gesture) == true {
                                                             checker.backgroundColor = .yellow
                                                         }
-                                                        view.addSubview(checker)
                                                         gesture.view?.transform = .identity
                                                         checker.frame.origin = CGPoint(
                                                             x: view.frame.height / 8,
@@ -529,19 +532,22 @@ class GameViewController: UIViewController {
                                                                 }
                                                             }
                                                         }
+                                                        canStepGray(gesture: gesture)
+                                                        canStepWhite(gesture: gesture)
+                                                        canStepQueenBlue(gesture: gesture)
+                                                        canStepQueenYellow(gesture: gesture)
                                                     }
                                                 } else {
-                                                    if currentMove == .whiteMove,
-                                                       checker.backgroundColor == .white, view.tag == (view_ch.tag - 14) {
-                                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenBottom.first?.subviews.first?.backgroundColor == .gray {
-                                                            filterSevenBottom.first?.subviews.first?.removeFromSuperview()
+                                                    if arrayOfPossibleStepsWhite.contains(view_ch.tag) || arrayOfPossibleStepsWhite.isEmpty, (arrayOfPossibleStepsQueenYellow.contains(view_ch.tag) || arrayOfPossibleStepsQueenYellow.isEmpty), currentMove == .whiteMove, checker.backgroundColor == .white, view.tag == (view_ch.tag + 14) {
+                                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenTop.first?.subviews.first?.backgroundColor == .gray || filterSevenTop.first?.subviews.first?.backgroundColor == .blue {
+                                                            filterSevenTop.first?.subviews.first?.removeFromSuperview()
                                                             chessScoreWhite += 1
                                                             labelScoreWhite.text = "\(chessScoreWhite)"
                                                             finishGame()
-                                                            if queenOfCheckers(gesture: gesture) == true {
+                                                            view.addSubview(checker)
+                                                            if queenWhiteOfCheckers(gesture: gesture) == true {
                                                                 checker.backgroundColor = .yellow
                                                             }
-                                                            view.addSubview(checker)
                                                             gesture.view?.transform = .identity
                                                             checker.frame.origin = CGPoint(
                                                                 x: view.frame.height / 8,
@@ -559,16 +565,18 @@ class GameViewController: UIViewController {
                                                                     }
                                                                 }
                                                             }
+                                                            canStepGray(gesture: gesture)
+                                                            canStepWhite(gesture: gesture)
+                                                            canStepQueenBlue(gesture: gesture)
+                                                            canStepQueenYellow(gesture: gesture)
                                                         }
                                                     } else {
-                                                        if currentMove == .whiteMove,
-                                                           checker.backgroundColor == .white, view.tag == (view_ch.tag + 18) {
-                                                            if view.subviews.isEmpty, view.backgroundColor != .white,  filterNineTop.first?.subviews.first?.backgroundColor == .gray {
-                                                                filterNineTop.first?.subviews.first?.removeFromSuperview()
-                                                                chessScoreWhite += 1
-                                                                labelScoreWhite.text = "\(chessScoreWhite)"
-                                                                finishGame()
+                                                        if arrayOfPossibleStepsWhite.isEmpty, arrayOfPossibleStepsQueenYellow.isEmpty, currentMove == .whiteMove, checker.backgroundColor == .white || checker.backgroundColor == .yellow, (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 9)) {
+                                                            if view.subviews.isEmpty, view.backgroundColor != .white {
                                                                 view.addSubview(checker)
+                                                                if queenWhiteOfCheckers(gesture: gesture) == true {
+                                                                    checker.backgroundColor = .yellow
+                                                                }
                                                                 gesture.view?.transform = .identity
                                                                 checker.frame.origin = CGPoint(
                                                                     x: view.frame.height / 8,
@@ -577,89 +585,34 @@ class GameViewController: UIViewController {
                                                                     if view.backgroundColor != .white {
                                                                         view.backgroundColor = .black
                                                                         view.layer.borderWidth = 0
-                                                                        if knockDownWhiteChecker(gesture: gesture) == true {
-                                                                            currentMove = .whiteMove
-                                                                            saveCurrentMove = currentMove
-                                                                        } else {
-                                                                            currentMove = .grayMove
-                                                                            saveCurrentMove = currentMove
-                                                                        }
+                                                                    }
+                                                                }
+                                                                currentMove = .grayMove
+                                                                saveCurrentMove = currentMove
+                                                                canStepGray(gesture: gesture)
+                                                                canStepWhite(gesture: gesture)
+                                                                canStepQueenBlue(gesture: gesture)
+                                                                canStepQueenYellow(gesture: gesture)
+                                                            } else {
+                                                                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
+                                                                    gesture.view?.transform = .identity
+                                                                }
+                                                                for view in board.subviews {
+                                                                    if view.backgroundColor != .white {
+                                                                        view.backgroundColor = .black
+                                                                        view.layer.borderWidth = 0
                                                                     }
                                                                 }
                                                             }
-                                                        }
-                                                        
-                                                        
-                                                        else {
-                                                            if currentMove == .whiteMove,
-                                                               checker.backgroundColor == .white, view.tag == (view_ch.tag + 14) {
-                                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterSevenTop.first?.subviews.first?.backgroundColor == .gray {
-                                                                    filterSevenTop.first?.subviews.first?.removeFromSuperview()
-                                                                    chessScoreWhite += 1
-                                                                    labelScoreWhite.text = "\(chessScoreWhite)"
-                                                                    finishGame()
-                                                                    view.addSubview(checker)
-                                                                    gesture.view?.transform = .identity
-                                                                    checker.frame.origin = CGPoint(
-                                                                        x: view.frame.height / 8,
-                                                                        y: view.frame.height / 8)
-                                                                    for view in board.subviews {
-                                                                        if view.backgroundColor != .white {
-                                                                            view.backgroundColor = .black
-                                                                            view.layer.borderWidth = 0
-                                                                            if knockDownWhiteChecker(gesture: gesture) == true {
-                                                                                currentMove = .whiteMove
-                                                                                saveCurrentMove = currentMove
-                                                                            } else {
-                                                                                currentMove = .grayMove
-                                                                                saveCurrentMove = currentMove
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } else {
-                                                                if currentMove == .whiteMove,
-                                                                   checker.backgroundColor == .white,
-                                                                   (view.tag == (view_ch.tag - 7) || view.tag == (view_ch.tag - 9)) {
-                                                                    if view.subviews.isEmpty, view.backgroundColor != .white {
-                                                                        if queenOfCheckers(gesture: gesture) == true {
-                                                                            checker.backgroundColor = .yellow
-                                                                        }
-                                                                        view.addSubview(checker)
-                                                                        gesture.view?.transform = .identity
-                                                                        checker.frame.origin = CGPoint(
-                                                                            x: view.frame.height / 8,
-                                                                            y: view.frame.height / 8)
-                                                                        for view in board.subviews {
-                                                                            if view.backgroundColor != .white {
-                                                                                view.backgroundColor = .black
-                                                                                view.layer.borderWidth = 0
-                                                                            }
-                                                                            currentMove = .grayMove
-                                                                            saveCurrentMove = currentMove
-                                                                        }
-                                                                    } else {
-                                                                        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
-                                                                            gesture.view?.transform = .identity
-                                                                        }
-                                                                        for view in board.subviews {
-                                                                            if view.backgroundColor != .white {
-                                                                                view.backgroundColor = .black
-                                                                                view.layer.borderWidth = 0
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
-                                                                        gesture.view?.transform = .identity
-                                                                        //
-                                                                    }
-                                                                    for view in board.subviews {
-                                                                        if view.backgroundColor != .white {
-                                                                            view.backgroundColor = .black
-                                                                            view.layer.borderWidth = 0
-                                                                        }
-                                                                    }
+                                                        } else {
+                                                            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
+                                                                gesture.view?.transform = .identity
+                                                                //
+                                                            }
+                                                            for view in board.subviews {
+                                                                if view.backgroundColor != .white {
+                                                                    view.backgroundColor = .black
+                                                                    view.layer.borderWidth = 0
                                                                 }
                                                             }
                                                         }
@@ -670,11 +623,11 @@ class GameViewController: UIViewController {
                                     }
                                 }
                             }
-                            //                }
-                            //                    else { UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
-                            //                    gesture.view?.transform = .identity
-                            //                }
                         }
+                    }
+                } else {
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn) {
+                        gesture.view?.transform = .identity
                     }
                 }
             }
@@ -688,10 +641,21 @@ class GameViewController: UIViewController {
         buttonLoad.addTarget(self, action: #selector(loadSaveBoard), for: .touchUpInside)
         buttonBack.addTarget(self, action: #selector(buttonBackClick), for: .touchUpInside)
     }
-    @objc func resetBoard() {
-        let switchAlert = UIAlertController(title: "Are you sure you want to reset?", message: "The game will restart", preferredStyle: .actionSheet)
+    
+    private func saveData() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let date: String =  dateFormatter.string(from: Date.now)
+    
+        checkers.append(Checkers(nameWhitePlayer: namePlayerWhite.text, nameGrayPlayer: namePlayerGray.text, timer: labelTimer.text, scoreGrayPlayer: chessScoreGray, scoreWhitePlayer: chessScoreWhite, date: date))
+        CoreDataManager.shared.saveGameInDB(checkers: checkers)
         
-        switchAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+    }
+    
+    
+    @objc func resetBoard() {
+        let switchAlert = UIAlertController(title: "reset".localized, message: "", preferredStyle: .actionSheet)
+        switchAlert.addAction(UIAlertAction(title: "yes".localized, style: .default, handler: { _ in
             for view in self.board.subviews{
                 view.removeFromSuperview()
             }
@@ -704,18 +668,17 @@ class GameViewController: UIViewController {
             self.labelScoreGray.text = "\(self.chessScoreGray)"
             self.labelScoreWhite.text = "\(self.chessScoreWhite)"
             self.currentMove = .whiteMove
+           
         }))
-        switchAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
+        switchAlert.addAction(UIAlertAction(title: "no".localized, style: .default, handler: { _ in
         }))
         
         present(switchAlert, animated: true, completion: nil)
     }
     
-    //MARK: SAVE
     @objc func saveBoardWithCheckers() {
-        
-        let switchAlert = UIAlertController(title: "Save?", message: "", preferredStyle: .actionSheet)
-        switchAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+        let switchAlert = UIAlertController(title: "save".localized, message: "", preferredStyle: .actionSheet)
+        switchAlert.addAction(UIAlertAction(title: "yes".localized, style: .default, handler: { _ in
             self.arrayCheckers.removeAll()
             for view in self.board.subviews {
                 if !view.subviews.isEmpty {
@@ -785,11 +748,11 @@ class GameViewController: UIViewController {
         } else {
             winnerColor = namePlayerWhite.text
         }
-        //        Settings.shared.resetData() сохранить в кордату данные
+        saveData()
         timer.invalidate()
         
-        let alert = UIAlertController(title: "Finish game", message:  (winnerColor ?? "white") + " is winner!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+        let alert = UIAlertController(title: "finish_game".localized, message:  (winnerColor ?? "white") + " is_winner".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: { action in
             self.buttonBackClick()
         }))
         

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0402AD2728637A500071149F /* Backlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402AD2628637A500071149F /* Backlight.swift */; };
+		0423CD812864AC2D007B8A5F /* CheckersDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0423CD7F2864AC2D007B8A5F /* CheckersDB.xcdatamodeld */; };
+		0423CD832864AD96007B8A5F /* CoreDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423CD822864AD96007B8A5F /* CoreDataModels.swift */; };
+		0423CD852864AF54007B8A5F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423CD842864AF54007B8A5F /* CoreDataManager.swift */; };
+		0423CD8A2864B33C007B8A5F /* CheckersDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423CD882864B33C007B8A5F /* CheckersDB+CoreDataClass.swift */; };
+		0423CD8B2864B33C007B8A5F /* CheckersDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423CD892864B33C007B8A5F /* CheckersDB+CoreDataProperties.swift */; };
 		047E84E327F9C8EB0000239B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 047E84DE27F9C8EB0000239B /* Localizable.strings */; };
 		047E84E427F9C8EB0000239B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 047E84E127F9C8EB0000239B /* Localizable.strings */; };
 		047E84E927F9E8CE0000239B /* String + Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E84E827F9E8CE0000239B /* String + Localizations.swift */; };
@@ -28,6 +34,9 @@
 		048333FE27D79BBF00AE5E9C /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048333FC27D79BBF00AE5E9C /* ScoreTableViewCell.xib */; };
 		0483340127D79C6000AE5E9C /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483340027D79C6000AE5E9C /* ScoreViewController.swift */; };
 		0483340427D79C8000AE5E9C /* ScoreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0483340327D79C8000AE5E9C /* ScoreViewController.storyboard */; };
+		0485438028630C3500717F29 /* Moves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485437F28630C3400717F29 /* Moves.swift */; };
+		0485BE1728665F6900639F8B /* 15120-delete.json in Resources */ = {isa = PBXBuildFile; fileRef = 0485BE1628665F6900639F8B /* 15120-delete.json */; };
+		0486AF312861D72A002AECAE /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486AF302861D72A002AECAE /* Queen.swift */; };
 		0487B73D282D02C200C32520 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0487B73C282D02C200C32520 /* GoogleService-Info.plist */; };
 		04921F4527B970C100DBEAD6 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921F4427B970C100DBEAD6 /* StartButtonView.swift */; };
 		04921F4727B970F400DBEAD6 /* StartButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04921F4627B970F400DBEAD6 /* StartButtonView.xib */; };
@@ -39,6 +48,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0402AD2628637A500071149F /* Backlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backlight.swift; sourceTree = "<group>"; };
+		0423CD802864AC2D007B8A5F /* CheckersDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheckersDB.xcdatamodel; sourceTree = "<group>"; };
+		0423CD822864AD96007B8A5F /* CoreDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModels.swift; sourceTree = "<group>"; };
+		0423CD842864AF54007B8A5F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0423CD882864B33C007B8A5F /* CheckersDB+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CheckersDB+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0423CD892864B33C007B8A5F /* CheckersDB+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CheckersDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		047E84D827F9C5BA0000239B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		047E84DF27F9C8EB0000239B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		047E84E227F9C8EB0000239B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable.strings; sourceTree = "<group>"; };
@@ -63,6 +78,9 @@
 		048333FC27D79BBF00AE5E9C /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
 		0483340027D79C6000AE5E9C /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		0483340327D79C8000AE5E9C /* ScoreViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScoreViewController.storyboard; sourceTree = "<group>"; };
+		0485437F28630C3400717F29 /* Moves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moves.swift; sourceTree = "<group>"; };
+		0485BE1628665F6900639F8B /* 15120-delete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15120-delete.json"; sourceTree = "<group>"; };
+		0486AF302861D72A002AECAE /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
 		0487B73C282D02C200C32520 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04921F4427B970C100DBEAD6 /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		04921F4627B970F400DBEAD6 /* StartButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartButtonView.xib; sourceTree = "<group>"; };
@@ -149,12 +167,14 @@
 				048333FA27D79A5C00AE5E9C /* Cells */,
 				04921F4A27B98E6600DBEAD6 /* Views */,
 				048333FF27D79BE000AE5E9C /* ViewControllers */,
+				0485BE1428665F4400639F8B /* Support */,
 				0481683627B4397500DBCF19 /* AppDelegate.swift */,
 				0481683827B4397500DBCF19 /* SceneDelegate.swift */,
 				0481683F27B4397700DBCF19 /* Assets.xcassets */,
 				0481684127B4397700DBCF19 /* LaunchScreen.storyboard */,
 				0481684427B4397700DBCF19 /* Info.plist */,
 				0487B73C282D02C200C32520 /* GoogleService-Info.plist */,
+				0423CD7F2864AC2D007B8A5F /* CheckersDB.xcdatamodeld */,
 			);
 			path = Checkers;
 			sourceTree = "<group>";
@@ -163,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				0481684B27B4399E00DBCF19 /* Settings.swift */,
+				0423CD842864AF54007B8A5F /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -170,6 +191,7 @@
 		0481684D27B439B100DBCF19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0485BE192866D01800639F8B /* Game */,
 				0481684E27B439EA00DBCF19 /* UIViewController + CoreKit.swift */,
 				04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */,
 				047E84E827F9E8CE0000239B /* String + Localizations.swift */,
@@ -235,6 +257,33 @@
 			path = Score;
 			sourceTree = "<group>";
 		};
+		0485BE1428665F4400639F8B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				0485BE1528665F5B00639F8B /* Lottie */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		0485BE1528665F5B00639F8B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				0485BE1628665F6900639F8B /* 15120-delete.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		0485BE192866D01800639F8B /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				049C2A2328569A0800F7DA83 /* Game.swift */,
+				0486AF302861D72A002AECAE /* Queen.swift */,
+				0485437F28630C3400717F29 /* Moves.swift */,
+				0402AD2628637A500071149F /* Backlight.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		04921F4327B96FBB00DBEAD6 /* StartButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +304,9 @@
 		049C2A222856996600F7DA83 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				049C2A2328569A0800F7DA83 /* Game.swift */,
+				0423CD822864AD96007B8A5F /* CoreDataModels.swift */,
+				0423CD882864B33C007B8A5F /* CheckersDB+CoreDataClass.swift */,
+				0423CD892864B33C007B8A5F /* CheckersDB+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0485BE1728665F6900639F8B /* 15120-delete.json in Resources */,
 				0487B73D282D02C200C32520 /* GoogleService-Info.plist in Resources */,
 				0483340427D79C8000AE5E9C /* ScoreViewController.storyboard in Resources */,
 				047E84E427F9C8EB0000239B /* Localizable.strings in Resources */,
@@ -414,19 +466,27 @@
 			files = (
 				04921F4527B970C100DBEAD6 /* StartButtonView.swift in Sources */,
 				049C2A2428569A0800F7DA83 /* Game.swift in Sources */,
+				0423CD832864AD96007B8A5F /* CoreDataModels.swift in Sources */,
 				0480DE1F27B6C2F6006BEF2B /* MainMenuViewController.swift in Sources */,
+				0485438028630C3500717F29 /* Moves.swift in Sources */,
+				0423CD8A2864B33C007B8A5F /* CheckersDB+CoreDataClass.swift in Sources */,
 				04AD9D6527BD324600CABB59 /* SettingsViewController.swift in Sources */,
+				0402AD2728637A500071149F /* Backlight.swift in Sources */,
+				0486AF312861D72A002AECAE /* Queen.swift in Sources */,
 				0481685727B43A6C00DBCF19 /* StartViewController.swift in Sources */,
 				0481684F27B439EA00DBCF19 /* UIViewController + CoreKit.swift in Sources */,
 				047E84E927F9E8CE0000239B /* String + Localizations.swift in Sources */,
 				0483340127D79C6000AE5E9C /* ScoreViewController.swift in Sources */,
+				0423CD852864AF54007B8A5F /* CoreDataManager.swift in Sources */,
 				0481683727B4397500DBCF19 /* AppDelegate.swift in Sources */,
 				0481685C27B43AA200DBCF19 /* GameViewController.swift in Sources */,
 				0481684C27B4399E00DBCF19 /* Settings.swift in Sources */,
 				0481683927B4397500DBCF19 /* SceneDelegate.swift in Sources */,
 				04921F4927B98BBD00DBEAD6 /* CAMediaTimingFunction.swift in Sources */,
 				048333FD27D79BBF00AE5E9C /* ScoreTableViewCell.swift in Sources */,
+				0423CD812864AC2D007B8A5F /* CheckersDB.xcdatamodeld in Sources */,
 				0481685227B43A1200DBCF19 /* LoadingViewController.swift in Sources */,
+				0423CD8B2864B33C007B8A5F /* CheckersDB+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +719,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0423CD7F2864AC2D007B8A5F /* CheckersDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0423CD802864AC2D007B8A5F /* CheckersDB.xcdatamodel */,
+			);
+			currentVersion = 0423CD802864AC2D007B8A5F /* CheckersDB.xcdatamodel */;
+			path = CheckersDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0481682B27B4397500DBCF19 /* Project object */;
 }

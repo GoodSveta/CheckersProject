@@ -5,10 +5,35 @@
   Created by mac on 3.04.22.
   
 */
-
-//MARK: LOADINGVC
+//MARK: LoadingVC
+"checkers" = "Шашки";
+//MARK: StartVC
+"welcom" = "Привет!";
+"enter_your_name" = "Введите имя";
+"enter_your_name_gray" = "игрока черными шашками...";
+"enter_your_name_white" = "игрока белыми шашками...";
+"done" = "Готово!";
 //MARK: SETTINGSVC
 "labelSettings_text" = " Настройки";
 "labelLanguage_text" = "Выбрать язык";
 "labelBgImage_text" = "Выбрать фон";
 "buttonBack_text" = "Назад";
+//MARK: MainMenu
+"button_start" = "Старт";
+"button_settings" = "Настройки";
+"button_score" = "Счет";
+"button_about" = "О игре";
+//MARK: Score
+//MARK: GameVC
+"namePlayer_black" = "Ваш ход";
+"namePlayer_white" = "Ваш ход:";
+"button_reset" = "Сброс";
+"button_save" = "Сохранить";
+"button_load" = "Загрузить";
+"finish_game" =  "Конец игры";
+" is_winner" = " победитель!";
+"reset" = "Вы уверены, что хотите выполнить сброс?";
+"yes" = "Да";
+"no" = "Нет";
+"save" = "Сохранить?";
+"ok" = "Закрыть";

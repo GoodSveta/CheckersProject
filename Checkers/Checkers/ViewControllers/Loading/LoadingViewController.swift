@@ -10,7 +10,6 @@ import LTMorphingLabel
 
 class LoadingViewController: UIViewController {
     
-    
     @IBOutlet weak var label: LTMorphingLabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
@@ -26,8 +25,8 @@ class LoadingViewController: UIViewController {
     
     
     private func setupUI() {
-        label.morphingEffect = .pixelate
-        label.text = ""
+        label.morphingEffect = .burn
+        label.text = "checkers".localized
     }
     
     private func startAnimation() {

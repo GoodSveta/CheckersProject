@@ -25,7 +25,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-Bx-wF9">
-                    <rect key="frame" x="110" y="22" width="65" height="26.5"/>
+                    <rect key="frame" x="136" y="22" width="65" height="26.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="WFs-Jd-mUP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6Rr-JX-wbA"/>
-                <constraint firstAttribute="trailing" secondItem="BKN-Bx-wF9" secondAttribute="trailing" constant="35" id="Sfm-XB-0Ws"/>
+                <constraint firstAttribute="trailing" secondItem="BKN-Bx-wF9" secondAttribute="trailing" constant="9" id="Sfm-XB-0Ws"/>
                 <constraint firstItem="BKN-Bx-wF9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UlR-IP-JZ8"/>
                 <constraint firstAttribute="bottom" secondItem="WFs-Jd-mUP" secondAttribute="bottom" constant="10" id="Vlz-Cp-REu"/>
                 <constraint firstItem="WFs-Jd-mUP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gJI-o6-5f0"/>

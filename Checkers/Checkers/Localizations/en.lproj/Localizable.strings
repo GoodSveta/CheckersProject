@@ -5,8 +5,34 @@
   Created by mac on 3.04.22.
   
 */
+//MARK: LoadingVC
+"checkers" = "CHECKERS";
+//MARK: StartVC
+"welcom" = "Welcom!";
+"enter_your_name" = "Enter your name";
+"enter_your_name_gray" = "enter gray player name...";
+"enter_your_name_white" = "enter white player name...";
+"done" = "Done";
 //MARK: SETTINGS
 "labelSettings_text" = "Settings";
 "labelLanguage_text" = "Сhoose language";
 "labelBgImage_text" = "Сhoose a background";
 "buttonBack_text" = "Back";
+//MARK: MainMenu
+"button_start" = "Start";
+"button_settings" = "Settings";
+"button_score" = "Score";
+"button_about" = "About";
+//MARK: GameVC
+"namePlayer_black" = "Your move";
+"namePlayer_white" = "Your move";
+"button_reset" = "Reset";
+"button_save" = "Save";
+"button_load" = "Load";
+"finish_game" =  "Finish game";
+" is_winner" = " is winner!";
+"reset" = "Are you sure you want to reset?";
+"yes" = "Yes";
+"no" = "No";
+"save" = "Save?";
+"ok" = "Ok";

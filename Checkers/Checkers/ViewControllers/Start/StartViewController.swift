@@ -56,14 +56,16 @@ class StartViewController: UIViewController {
         }
         
         func setupLabelStyle() {
-            label.text = "Welcom!"
+            label.text = "welcom".localized
             label.textColor = #colorLiteral(red: 0.3433472514, green: 0.3433472514, blue: 0.3433472514, alpha: 1)
-            labelName.text = "Enter your name"
+            labelName.text = "enter_your_name".localized
             labelName.textColor = #colorLiteral(red: 0.2602502108, green: 0.2602502108, blue: 0.2602502108, alpha: 1)
+            textFieldText.placeholder = "enter_your_name_gray".localized
+            textFieldTextWhitePlayer.placeholder = "enter_your_name_white".localized
         }
         
         func setupButtonStyle() {
-            button.setTitle("Done", for: .normal)
+            button.setTitle("done".localized, for: .normal)
             button.backgroundColor = #colorLiteral(red: 0.2602502108, green: 0.2602502108, blue: 0.2602502108, alpha: 1)
             button.layer.cornerRadius = 10
             button.tintColor = .white

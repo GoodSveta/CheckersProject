@@ -1,11 +1,10 @@
 //
-//  Game.swift
+//  Backlight.swift
 //  Checkers
 //
-//  Created by mac on 13.06.22.
+//  Created by mac on 22.06.22.
 //
 
-import Foundation
 import UIKit
 
 extension GameViewController {
@@ -61,7 +60,7 @@ extension GameViewController {
         let filterFortysixBottom = board.subviews.filter{($0.tag == view_ch.tag - 46)}
         let filterFiftyfourBottom = board.subviews.filter{($0.tag == view_ch.tag - 54)}
         
-        //MARK: backlight GRAY (right top)
+//MARK: backlight GRAY (right top)
         for view in board.subviews {
             if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 18)) {
                 if view.subviews.isEmpty, view.backgroundColor != .white,
@@ -71,37 +70,37 @@ extension GameViewController {
                     view.layer.borderWidth = 3
                 }
             } else {
-                if (view.tag == (view_ch.tag + 4)) {
+                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 4)) {
                     if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterFourTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterElevenTop.first?.subviews.first?.backgroundColor == .white {
                         view.layer.borderColor = UIColor.green.cgColor
                         view.layer.borderWidth = 3
                     }
                 } else {
-                    if (view.tag == (view_ch.tag + 32)) {
-                        if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentyfiveTop.first?.subviews.first?.backgroundColor == .white {
+                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 32)) {
+                        if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentyfiveTop.first?.subviews.first?.backgroundColor == .white {
                             view.layer.borderColor = UIColor.green.cgColor
                             view.layer.borderWidth = 3
                         }
                     }  else {
-                        if (view.tag == (view_ch.tag + 36)) {
+                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 36)) {
                             if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white  {
                                 view.layer.borderColor = UIColor.green.cgColor
                                 view.layer.borderWidth = 3
                             }
                         }  else {
-                            if (view.tag == (view_ch.tag + 54)) {
+                            if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 54)) {
                                 if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterFortyFiveTop.first?.subviews.first?.backgroundColor == .white  {
                                     view.layer.borderColor = UIColor.green.cgColor
                                     view.layer.borderWidth = 3
                                 }
                             } else {
-                                if (view.tag == (view_ch.tag + 22)) {
+                                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 22)) {
                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyNineTop.first?.subviews.first?.backgroundColor == .white  {
                                         view.layer.borderColor = UIColor.green.cgColor
                                         view.layer.borderWidth = 3
                                     }
                                 } else {
-                                    if (view.tag == (view_ch.tag + 50)) {
+                                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 50)) {
                                         if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterThirtysixTop.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyTop.first(where: {$0.subviews.isEmpty}) != nil && filterNineTop.first?.subviews.first?.backgroundColor == .white && filterTwentysevenTop.first?.subviews.first?.backgroundColor == .white && filterFortythreeTop.first?.subviews.first?.backgroundColor == .white  {
                                             view.layer.borderColor = UIColor.green.cgColor
                                             view.layer.borderWidth = 3
@@ -116,25 +115,25 @@ extension GameViewController {
                                 view.layer.borderWidth = 3
                                             }
                                         } else {
-                                            if (view.tag == (view_ch.tag + 28)) {
+                                            if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 28)) {
                                                 if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white {
                                                     view.layer.borderColor = UIColor.green.cgColor
                                                     view.layer.borderWidth = 3
                                                 }
                                             } else {
-                                                if (view.tag == (view_ch.tag + 42)) {
+                                                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 42)) {
                                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil && filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white && filterThirtyFiveTop.first?.subviews.first?.backgroundColor == .white  {
                                                         view.layer.borderColor = UIColor.green.cgColor
                                                         view.layer.borderWidth = 3
                                                     }
                                                 } else {
-                                                    if (view.tag == (view_ch.tag - 4)) {
+                                                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 4)) {
                                                         if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterFiveTop.first?.subviews.first?.backgroundColor == .white  {
                                                             view.layer.borderColor = UIColor.green.cgColor
                                                             view.layer.borderWidth = 3
                                                         }
                                                     } else {
-                                                        if (view.tag == (view_ch.tag + 10)) {
+                                                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 10)) {
                                                             if view.subviews.isEmpty, view.backgroundColor != .white,  filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil &&
                                                                 filterSevenTop.first?.subviews.first?.backgroundColor == .white &&
                                                                 filterTwentyOneTop.first?.subviews.first?.backgroundColor == .white &&
@@ -144,13 +143,13 @@ extension GameViewController {
                                                             }
                                                         }
                                                         else {
-                                                            if (view.tag == (view_ch.tag + 32)) {
+                                                            if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 32)) {
                                                                 if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoTop.first(where: {$0.subviews.isEmpty}) != nil && filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterTwentythreeTop.first?.subviews.first?.backgroundColor == .white {
                                                                     view.layer.borderColor = UIColor.green.cgColor
                                                                     view.layer.borderWidth = 3
                                                                 }
                                                             } else {
-                                                                if (view.tag == (view_ch.tag + 46)) {
+                                                                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag + 46)) {
                                                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightTop.first(where: {$0.subviews.isEmpty}) != nil &&
                                                                         filterFortysixTop.first(where: {$0.subviews.isEmpty}) != nil &&
                                                                         filterSevenTop.first?.subviews.first?.backgroundColor == .white &&
@@ -169,45 +168,45 @@ extension GameViewController {
                                                                             view.layer.borderWidth = 3
                                                                         }
                                                                     } else {
-                                                                        if (view.tag == (view_ch.tag - 4)) {
+                                                                        if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 4)) {
                                                                             if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil &&  filterFourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterElevenBottom.first?.subviews.first?.backgroundColor == .white  {
                                                                                 view.layer.borderColor = UIColor.green.cgColor
                                                                                 view.layer.borderWidth = 3
                                                                             }
                                                                         } else {
-                                                                            if (view.tag == (view_ch.tag - 32)) {
+                                                                            if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 32)) {
                                                                                 if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyfiveBottom.first?.subviews.first?.backgroundColor == .white  {
                                                                                     view.layer.borderColor = UIColor.green.cgColor
                                                                                     view.layer.borderWidth = 3
                                                                                 }
                                                                             }  else {
-                                                                                if (view.tag == (view_ch.tag - 36)) {
+                                                                                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 36)) {
                                                                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white  {
                                                                                         view.layer.borderColor = UIColor.green.cgColor
                                                                                         view.layer.borderWidth = 3
                                                                                     }
                                                                                 }  else {
-                                                                                    if (view.tag == (view_ch.tag - 54)) {
+                                                                                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 54)) {
                                                                                         if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterFortyFiveBottom.first?.subviews.first?.backgroundColor == .white  {
                                                                                             view.layer.borderColor = UIColor.green.cgColor
                                                                                             view.layer.borderWidth = 3
                                                                                         }
                                             } else {
-                                                if (view.tag == (view_ch.tag - 22)) {
+                                                if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 22)) {
                                                 if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterTwentyNineBottom.first?.subviews.first?.backgroundColor == .white {
                                                         view.layer.borderColor = UIColor.green.cgColor
                                                         view.layer.borderWidth = 3
                                                                         }
                                                 } else {
-                                                    if (view.tag == (view_ch.tag - 22)) {
+                                                    if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 22)) {
                                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenTop.first(where: {$0.subviews.isEmpty}) != nil && filterFourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenTop.first?.subviews.first?.backgroundColor == .white && filterFiveTop.first?.subviews.first?.backgroundColor == .white && filterThirteenBottom.first?.subviews.first?.backgroundColor == .white {
                                                             view.layer.borderColor = UIColor.green.cgColor
                                                             view.layer.borderWidth = 3
                                                                             
                                                     }
                                                 } else {
-                                                                    if (view.tag == (view_ch.tag - 50)) {
-                                                                    if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterFortythreeBottom.first?.subviews.first?.backgroundColor == .white  {
+                                                     if checker.backgroundColor == .gray, (view.tag == (view_ch.tag - 50)) {
+                                                        if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFiftyfourBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .white && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .white && filterFortythreeBottom.first?.subviews.first?.backgroundColor == .white  {
                                                                                                     view.layer.borderColor = UIColor.green.cgColor
                                                                                                     view.layer.borderWidth = 3
                                                                                                 }
@@ -276,7 +275,7 @@ extension GameViewController {
                                                                 
                                                                 ((filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterNineBottom.first?.subviews.first?.backgroundColor != .white) || filterNineBottom.first(where: {$0.subviews.isEmpty}) != nil) &&
                                                                 
-                                                                ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .white) || filterEighteenTop.first?.backgroundColor == .white || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil)  {
+                                                                ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .white) || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil)  {
                                                                 view.layer.borderColor = UIColor.green.cgColor
                                                                 view.layer.borderWidth = 3
                                                             }
@@ -437,17 +436,17 @@ extension GameViewController {
                                                                                 view.layer.borderColor = UIColor.green.cgColor
                                                                                 view.layer.borderWidth = 3
                                                                             }
-                                                                        } else {
-                                                                            if (view.tag == (view_ch.tag - 32)) {
-                                                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentyfiveBottom.first?.subviews.first?.backgroundColor == .gray  {
-                                                                                    view.layer.borderColor = UIColor.green.cgColor
-                                                                                    view.layer.borderWidth = 3
-                                                                                }
-                                                                            }  else {
-                                                                                if (view.tag == (view_ch.tag - 36)) {
-                                                                                    if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .gray  {
-                                                                                        view.layer.borderColor = UIColor.green.cgColor
-                                                                                        view.layer.borderWidth = 3
+                            } else {
+                                if (view.tag == (view_ch.tag - 32)) {
+                                  if view.subviews.isEmpty, view.backgroundColor != .white, filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentyfiveBottom.first?.subviews.first?.backgroundColor == .gray {
+                                      view.layer.borderColor = UIColor.green.cgColor
+                                      view.layer.borderWidth = 3
+                                     }
+                                   } else {
+                                      if (view.tag == (view_ch.tag - 36)) {
+                                        if view.subviews.isEmpty, view.backgroundColor != .white,  filterEighteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterNineBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentysevenBottom.first?.subviews.first?.backgroundColor == .gray  {
+                                            view.layer.borderColor = UIColor.green.cgColor
+                                            view.layer.borderWidth = 3
                                                                                     }
                                                                                 }  else {
                                                                                     if (view.tag == (view_ch.tag - 54)) {
@@ -488,12 +487,12 @@ extension GameViewController {
                                                                                                                 view.layer.borderColor = UIColor.green.cgColor
                                                                                                                 view.layer.borderWidth = 3
                                                                                                             }
-                                                                                                        } else {
-                                                                                                            if (view.tag == (view_ch.tag + 4)) {
-                                                                                                                if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil &&  filterSevenBottom.first?.subviews.first?.backgroundColor == .gray &&  filterFiveBottom.first?.subviews.first?.backgroundColor == .gray  {
-                                                                                                                    view.layer.borderColor = UIColor.green.cgColor
-                                                                                                                    view.layer.borderWidth = 3
-                                                                                                                }
+        } else {
+         if (view.tag == (view_ch.tag + 4)) {
+           if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenBottom.first?.subviews.first?.backgroundColor == .gray && filterFiveBottom.first?.subviews.first?.backgroundColor == .gray {
+               view.layer.borderColor = UIColor.green.cgColor
+               view.layer.borderWidth = 3
+            }
                                                                                                             } else {
                                                                                                                 if (view.tag == (view_ch.tag - 10)) {
                                                                                                                     if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil &&
@@ -503,48 +502,31 @@ extension GameViewController {
                                                                                                                         view.layer.borderColor = UIColor.green.cgColor
                                                                                                                         view.layer.borderWidth = 3
                                                                                                                     }
-                                                                                                                }
-                                                                                                                else {
-                                                                                                                    if (view.tag == (view_ch.tag - 32)) {
-                                                                                                                        if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil &&
-                                                                                                                            filterSevenBottom.first?.subviews.first?.backgroundColor == .gray &&
-                                                                                                                            filterTwentythreeBottom.first?.subviews.first?.backgroundColor == .gray {
-                                                                                                                            view.layer.borderColor = UIColor.green.cgColor
-                                                                                                                            view.layer.borderWidth = 3
-                                                                                                                        }
-                                                                                                                    } else {
-                                                                                                                        if (view.tag == (view_ch.tag - 46)) {
-                                                                                                                            if view.subviews.isEmpty, view.backgroundColor != .white,  filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil &&
-                                                                                                                                filterFortysixBottom.first(where: {$0.subviews.isEmpty}) != nil &&
-                                                                                                                                filterSevenBottom.first?.subviews.first?.backgroundColor == .gray &&
-                                                                                                                                filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .gray &&
-                                                                                                                                filterThirtysevenBottom.first?.subviews.first?.backgroundColor == .gray {
-                                                                                                                                view.layer.borderColor = UIColor.green.cgColor
-                                                                                                                                view.layer.borderWidth = 3
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        else {
-                                                                                                                            //                         CHECK!!!
-                                                                                                                            if checker.backgroundColor == .white, view.tag == (view_ch.tag - 7) {
-                                                                                                                                if view.backgroundColor != .white, view.subviews.isEmpty,
-                                                                                                                                   
-                                                                                                                                    ((filterFourteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterSevenTop.first?.subviews.first?.backgroundColor != .gray) || filterSevenTop.first(where: {$0.subviews.isEmpty}) != nil) &&
-                                                                                                                                    
-                                                                                                                                    ((filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterNineBottom.first?.subviews.first?.backgroundColor != .gray) || filterNineBottom.first(where: {$0.subviews.isEmpty}) != nil || filterEighteenBottom.first?.backgroundColor == .white) &&
-                                                                                                                                    
-                                                                                                                                    ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .gray) || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil) {
-                                                                                                                                    view.layer.borderColor = UIColor.green.cgColor
-                                                                                                                                    view.layer.borderWidth = 3
-                                                                                                                                }
-                                                                                                                            } else {
-                                                                                                                                if checker.backgroundColor == .white, view.tag == (view_ch.tag - 9) {
-                                                                                                                                    if view.backgroundColor != .white, view.subviews.isEmpty, ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .gray) || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil) &&
-                                                                                                                                        
-                                                                                                                                        ((filterFourteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .gray) || filterSevenBottom.first(where: {$0.subviews.isEmpty}) != nil) &&
-                                                                                                                                        
-                                                                                                                                        ((filterFourteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterSevenTop.first?.subviews.first?.backgroundColor != .gray) || filterSevenTop.first(where: {$0.subviews.isEmpty}) != nil) {
-                                                                                                                                        view.layer.borderColor = UIColor.green.cgColor
-                                                                                                                                        view.layer.borderWidth = 3
+                        } else {
+                           if (view.tag == (view_ch.tag - 32)) {
+                             if view.subviews.isEmpty, view.backgroundColor != .white, filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterThirtytwoBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentythreeBottom.first?.subviews.first?.backgroundColor == .gray {
+                                view.layer.borderColor = UIColor.green.cgColor
+                                view.layer.borderWidth = 3
+                        }
+                      } else {
+                         if (view.tag == (view_ch.tag - 46)) {
+                           if view.subviews.isEmpty, view.backgroundColor != .white,  filterFourteenBottom.first(where: {$0.subviews.isEmpty}) != nil && filterTwentyEightBottom.first(where: {$0.subviews.isEmpty}) != nil && filterFortysixBottom.first(where: {$0.subviews.isEmpty}) != nil && filterSevenBottom.first?.subviews.first?.backgroundColor == .gray && filterTwentyOneBottom.first?.subviews.first?.backgroundColor == .gray && filterThirtysevenBottom.first?.subviews.first?.backgroundColor == .gray {
+                               view.layer.borderColor = UIColor.green.cgColor
+                               view.layer.borderWidth = 3
+                           }
+                        } else {
+ //                         CHECK!!!
+                            if checker.backgroundColor == .white, view.tag == (view_ch.tag - 7) {
+                              if view.backgroundColor != .white, view.subviews.isEmpty,
+                              ((filterFourteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterSevenTop.first?.subviews.first?.backgroundColor != .gray) || filterSevenTop.first(where: {$0.subviews.isEmpty}) != nil) && ((filterEighteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterNineBottom.first?.subviews.first?.backgroundColor != .gray) || filterNineBottom.first(where: {$0.subviews.isEmpty}) != nil || filterEighteenBottom.first?.backgroundColor == .white) && ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .gray) || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil) {
+                                  view.layer.borderColor = UIColor.green.cgColor
+                                  view.layer.borderWidth = 3
+                         }
+                                                } else {
+                                                     if checker.backgroundColor == .white, view.tag == (view_ch.tag - 9) {
+                                                       if view.backgroundColor != .white, view.subviews.isEmpty, ((filterEighteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterNineTop.first?.subviews.first?.backgroundColor != .gray) || filterNineTop.first(where: {$0.subviews.isEmpty}) != nil) && ((filterFourteenBottom.first(where: {$0.subviews.isEmpty}) == nil || filterSevenBottom.first?.subviews.first?.backgroundColor != .gray) || filterSevenBottom.first(where: {$0.subviews.isEmpty}) != nil) && ((filterFourteenTop.first(where: {$0.subviews.isEmpty}) == nil || filterSevenTop.first?.subviews.first?.backgroundColor != .gray) || filterSevenTop.first(where: {$0.subviews.isEmpty}) != nil) {
+                                                                view.layer.borderColor = UIColor.green.cgColor
+                                                                view.layer.borderWidth = 3
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
@@ -577,6 +559,5 @@ extension GameViewController {
                 }
             }
         }
-        
     }}
 }
