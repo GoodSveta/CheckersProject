@@ -18,14 +18,17 @@
 "labelLanguage_text" = "Сhoose language";
 "labelBgImage_text" = "Сhoose a background";
 "buttonBack_text" = "Back";
+"change_text" = "Change";
+"cancel_text" = "Cancel";
+"delete_text" = "Delete";
 //MARK: MainMenu
 "button_start" = "Start";
 "button_settings" = "Settings";
 "button_score" = "Score";
 "button_about" = "About";
 //MARK: GameVC
-"namePlayer_black" = "Your move";
-"namePlayer_white" = "Your move";
+"namePlayer_black" = "Gray move";
+"namePlayer_white" = "White move";
 "button_reset" = "Reset";
 "button_save" = "Save";
 "button_load" = "Load";

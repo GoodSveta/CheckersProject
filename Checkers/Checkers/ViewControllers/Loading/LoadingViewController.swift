@@ -7,9 +7,11 @@
 
 import UIKit
 import LTMorphingLabel
+import Lottie
 
 class LoadingViewController: UIViewController {
     
+   
     @IBOutlet weak var label: LTMorphingLabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
@@ -19,16 +21,15 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        setupUI()
         startAnimation()
     }
     
-    
     private func setupUI() {
-        label.morphingEffect = .burn
+        label.morphingEffect = .anvil
         label.text = "checkers".localized
     }
-    
+   
     private func startAnimation() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.5,
@@ -40,15 +41,15 @@ class LoadingViewController: UIViewController {
                            options: [.curveEaseInOut]) {
                 self.backgroundImageView.alpha = 0.0
             } completion: { _ in
-//                if Settings.shared.viewControllerOneCompleted {
-//                    guard let mainMenuViewController = MainMenuViewController.getInstanceViewController else { return }
-//                    self.navigationController?.viewControllers = [mainMenuViewController]
-                    //                    guard let gameViewController = GameViewController.getInstanceViewController else { return }
-                    //                    self.navigationController?.viewControllers = [gameViewController]
-//                } else {
+                if Settings.shared.viewControllerOneCompleted {
+                    guard let mainMenuViewController = MainMenuViewController.getInstanceViewController else { return }
+                    self.navigationController?.viewControllers = [mainMenuViewController]
+                                        guard let gameViewController = GameViewController.getInstanceViewController else { return }
+                                        self.navigationController?.viewControllers = [gameViewController]
+                } else {
                     guard let startVC = StartViewController.getInstanceViewController else { return }
                     self.navigationController?.viewControllers = [startVC]
-//                }
+                }
             }
         }
     }

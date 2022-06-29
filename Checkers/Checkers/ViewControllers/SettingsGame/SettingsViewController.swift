@@ -15,15 +15,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var labelLanguage: UILabel!
     @IBOutlet weak var buttonBack: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI ()
-        
     }
+    
     private func setupUI () {
-       
         imageView.image = Settings.shared.imageBackground
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 35
@@ -37,45 +34,37 @@ class SettingsViewController: UIViewController {
         buttonBack.setTitle("buttonBack_text".localized, for: .normal)
     }
     
-    
     @IBAction func settingTapGestureRecognizer(_ sender: Any) {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changeImageBg = UIAlertAction(title: "Change", style: .default) { _ in
+        let changeImageBg = UIAlertAction(title: "change_text".localized, style: .default) { _ in
           
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
-            pickerController.allowsEditing = true //возможность изменить картинку
+            pickerController.allowsEditing = true
             pickerController.sourceType = .photoLibrary
             self.present(pickerController, animated: true, completion: nil)
             }
-            let cancelImageBg = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let deleteImageBg = UIAlertAction(title: "Delete", style: .default) { _ in
+        let cancelImageBg = UIAlertAction(title: "cancel_text".localized, style: .cancel, handler: nil)
+        let deleteImageBg = UIAlertAction(title: "delete_text".localized, style: .default) { _ in
             self.imageView.image = UIImage(named: "13")
             Settings.shared.imageBackground = UIImage(named: "13")
-            
         }
-   
         alert.addAction(changeImageBg)
         alert.addAction(cancelImageBg)
         alert.addAction(deleteImageBg)
-        
         present(alert, animated: true, completion: nil)
-
     }
     
     @IBAction func changeLanguage(_ sender: UIButton) {
         Settings.shared.currentLanguageCode = Settings.shared.lanCode[sender.tag]
         setLocalization()
-        
     }
-    
     
     @IBAction func backButtonClick(_ sender: UIButton) {
         guard let mainVC = MainMenuViewController.getInstanceViewController else { return }
         self.navigationController?.viewControllers = [mainVC]
     }
-    
     
 }
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

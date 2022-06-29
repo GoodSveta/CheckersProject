@@ -38,10 +38,12 @@
 		0485BE1728665F6900639F8B /* 15120-delete.json in Resources */ = {isa = PBXBuildFile; fileRef = 0485BE1628665F6900639F8B /* 15120-delete.json */; };
 		0486AF312861D72A002AECAE /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486AF302861D72A002AECAE /* Queen.swift */; };
 		0487B73D282D02C200C32520 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0487B73C282D02C200C32520 /* GoogleService-Info.plist */; };
+		048BB6D0286BA0E300CD9ECA /* buttonstart.json in Resources */ = {isa = PBXBuildFile; fileRef = 048BB6CF286BA0E300CD9ECA /* buttonstart.json */; };
 		04921F4527B970C100DBEAD6 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921F4427B970C100DBEAD6 /* StartButtonView.swift */; };
 		04921F4727B970F400DBEAD6 /* StartButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04921F4627B970F400DBEAD6 /* StartButtonView.xib */; };
 		04921F4927B98BBD00DBEAD6 /* CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */; };
 		049C2A2428569A0800F7DA83 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C2A2328569A0800F7DA83 /* Game.swift */; };
+		04A6D536286BC843008BEC86 /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A6D535286BC843008BEC86 /* loadingAnimation.json */; };
 		04AD9D6527BD324600CABB59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD9D6427BD324600CABB59 /* SettingsViewController.swift */; };
 		04AD9D6727BD325B00CABB59 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AD9D6627BD325B00CABB59 /* SettingsViewController.storyboard */; };
 		1DB51DE7D9CE36A637FB4D4A /* Pods_Checkers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1208596E5269501B4724053D /* Pods_Checkers.framework */; };
@@ -82,10 +84,12 @@
 		0485BE1628665F6900639F8B /* 15120-delete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15120-delete.json"; sourceTree = "<group>"; };
 		0486AF302861D72A002AECAE /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
 		0487B73C282D02C200C32520 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		048BB6CF286BA0E300CD9ECA /* buttonstart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buttonstart.json; sourceTree = "<group>"; };
 		04921F4427B970C100DBEAD6 /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		04921F4627B970F400DBEAD6 /* StartButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartButtonView.xib; sourceTree = "<group>"; };
 		04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAMediaTimingFunction.swift; sourceTree = "<group>"; };
 		049C2A2328569A0800F7DA83 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		04A6D535286BC843008BEC86 /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
 		04AD9D6427BD324600CABB59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04AD9D6627BD325B00CABB59 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		1208596E5269501B4724053D /* Pods_Checkers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Checkers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,8 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				0485BE192866D01800639F8B /* Game */,
-				0481684E27B439EA00DBCF19 /* UIViewController + CoreKit.swift */,
 				04921F4827B98BBD00DBEAD6 /* CAMediaTimingFunction.swift */,
+				0481684E27B439EA00DBCF19 /* UIViewController + CoreKit.swift */,
 				047E84E827F9E8CE0000239B /* String + Localizations.swift */,
 			);
 			path = Extensions;
@@ -269,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				0485BE1628665F6900639F8B /* 15120-delete.json */,
+				04A6D535286BC843008BEC86 /* loadingAnimation.json */,
+				048BB6CF286BA0E300CD9ECA /* buttonstart.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -405,9 +411,11 @@
 				048333FE27D79BBF00AE5E9C /* ScoreTableViewCell.xib in Resources */,
 				047E84E327F9C8EB0000239B /* Localizable.strings in Resources */,
 				04AD9D6727BD325B00CABB59 /* SettingsViewController.storyboard in Resources */,
+				048BB6D0286BA0E300CD9ECA /* buttonstart.json in Resources */,
 				0481685927B43A7B00DBCF19 /* StartViewController.storyboard in Resources */,
 				0481685427B43A2600DBCF19 /* LoadingViewController.storyboard in Resources */,
 				04921F4727B970F400DBEAD6 /* StartButtonView.xib in Resources */,
+				04A6D536286BC843008BEC86 /* loadingAnimation.json in Resources */,
 				0481684327B4397700DBCF19 /* LaunchScreen.storyboard in Resources */,
 				0480DE2127B6C308006BEF2B /* MainMenuViewController.storyboard in Resources */,
 				0481685E27B43AB100DBCF19 /* GameViewController.storyboard in Resources */,

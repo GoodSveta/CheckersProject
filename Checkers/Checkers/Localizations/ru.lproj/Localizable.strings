@@ -18,6 +18,9 @@
 "labelLanguage_text" = "Выбрать язык";
 "labelBgImage_text" = "Выбрать фон";
 "buttonBack_text" = "Назад";
+"change_text" = "Изменить";
+"cancel_text" = "Отмена";
+"delete_text" = "Удалить";
 //MARK: MainMenu
 "button_start" = "Старт";
 "button_settings" = "Настройки";
@@ -25,8 +28,8 @@
 "button_about" = "О игре";
 //MARK: Score
 //MARK: GameVC
-"namePlayer_black" = "Ваш ход";
-"namePlayer_white" = "Ваш ход:";
+"namePlayer_black" = "Серые";
+"namePlayer_white" = "Белые";
 "button_reset" = "Сброс";
 "button_save" = "Сохранить";
 "button_load" = "Загрузить";

@@ -19,6 +19,7 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         deleteButton.isHidden = true
+        lottieView.isHidden = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ScoreTableViewCell", bundle: nil), forCellReuseIdentifier: "ScoreTableViewCell")
@@ -62,6 +63,7 @@ class ScoreViewController: UIViewController {
         CoreDataManager.shared.deleteAllInDB()
         self.tableView.reloadData()
         deleteButton.isHidden = true
+        lottieView.isHidden = true
     }
 }
 
@@ -75,6 +77,7 @@ extension ScoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if checkers.count > 0 {
             deleteButton.isHidden = false
+            lottieView.isHidden = false
         }
         return checkers.count
     }

@@ -38,7 +38,7 @@ class StartButtonView: UIView {
     }
     
     @IBInspectable var text: String {
-        set { textLabel.text = "button_start".localized }
+        set { textLabel.text = ""}
         get { return textLabel.text ?? ""}
     }
     
@@ -83,7 +83,7 @@ class StartButtonView: UIView {
         Bundle(for: StartButtonView.self).loadNibNamed("StartButtonView", owner: self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
-        textLabel.text = "button_start".localized
+//        textLabel.text = "button_start".localized
     }
 }
 
