@@ -19,7 +19,7 @@ class ScoreTableViewCell: UITableViewCell {
     @IBOutlet weak var scoreWhite: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-//        timeLabel.text =  UserDefaults.standard.object(forKey: "Timer") as? String
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

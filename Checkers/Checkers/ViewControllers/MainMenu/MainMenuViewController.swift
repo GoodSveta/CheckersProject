@@ -15,10 +15,17 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var buttonScore: UIButton!
     @IBOutlet weak var buttonSettings: UIButton!
     private var interstitial: GADInterstitialAd?
+    let imageCheckers = UIImage(named: "checkers")
+    private let animationRepeatDuration: CFTimeInterval = 2.0
+    private let rotationAnimatonKey: String = "rotationAnimation"
     
+    @IBOutlet weak var imageView: UIImageView!
+//    var imageView = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLocalization()
+        imageView.alpha = 0.0
     }
     
     func loadIntersAds() {
@@ -42,29 +49,90 @@ class MainMenuViewController: UIViewController {
         buttonSettings.setTitle("button_settings".localized, for: .normal)
     }
     
+    func imageAnimation() {
+//        guard let image = UIImage(named: "checkers") else { return }
+//        let imageSize = CGSize(width: image.size.width / 5.0, height: image.size.height / 5.0)
+//        imageView = UIImageView(frame: CGRect(origin: CGPoint(
+//            x: view.bounds.width / 2.5 - (imageSize.width / 2.5),
+//            y: view.bounds.height - imageSize.height), size: .zero))
+//        imageView.image = image
+//        imageView.frame.size = imageSize
+        imageView.alpha = 1.0
+//        imageView.isUserInteractionEnabled = true
+//        view.addSubview(imageView)
+        
+//        UIView.animate(withDuration: 2.0, delay: 0.0, options: [.autoreverse]) {
+////            imageView.frame.origin = CGPoint(x: 0.0, y: 44.0)
+//            self.imageView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5).translatedBy(x: -50, y: -800)
+//
+////                .rotated(by: 45.0 * 180.0 / .pi).translatedBy(x: 350, y: 650)
+//        } completion: { _ in
+////            imageView.frame.origin = CGPoint(
+////                x: self.view.bounds.width / 2.0 - (imageSize.width / 2.0),
+////                y: self.view.bounds.height - imageSize.height)
+//        }
+   
+        let animation = CABasicAnimation(keyPath: "position.y")
+        animation.toValue = 44.0
+        animation.repeatCount = 1.0
+        animation.duration = 2.5
+        animation.beginTime = CACurrentMediaTime()
+        animation.isRemovedOnCompletion = false
+        animation.autoreverses = true
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        animation.fillMode = .both
+        self.imageView.layer.add(animation, forKey: "originYAnimation")
+        
+        let animation2 = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation2.toValue = NSNumber(value: Double.pi * 2)
+        animation2.repeatCount = 2.0
+        animation2.duration = 2.0
+        animation2.beginTime = CACurrentMediaTime()
+        animation2.isRemovedOnCompletion = false
+        animation2.autoreverses = true
+        animation2.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        animation2.fillMode = .both
+        self.imageView.layer.add(animation2, forKey: "rotationYAnimation")
+
+    }
+    
+    func rotateSquare() {
+            let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+            rotation.duration = 1
+        rotation.isCumulative = true
+            rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.view.layer.add(rotation, forKey: "rotationAnimation")
+        
+        }
+    
     @IBAction func startButtonGestureRecognizer(_ sender: Any) {
+        
         
         UIView.animate(withDuration: 0.5,
                        delay: 0.5,
                        options: [.curveEaseInOut]) {
-            self.buttonAbout.alpha = 0.0
-            
+            self.startButtonView.alpha = 0.0
+            self.imageAnimation()
         } completion: { _ in
             UIView.animate(withDuration: 0.5,
                            delay: 0.0,
                            options: [.curveEaseInOut]) {
-                self.buttonSettings.alpha = 0.0
+                self.buttonScore.alpha = 0.0
+                self.imageView.alpha = 1
             } completion: { _ in
                 UIView.animate(withDuration: 0.5,
                                delay: 0.0,
                                options: [.curveEaseInOut]) {
-                    self.buttonScore.alpha = 0.0
+                    self.buttonSettings.alpha = 0.0
                 } completion: { _ in
                     UIView.animate(withDuration: 0.5,
                                    delay: 0.0,
                                    options: [.curveEaseInOut]) {
-                        self.startButtonView.alpha = 0.0
+                        self.buttonAbout.alpha = 0.0
                     } completion: { _ in
+                        
+                        UIView.transition(with: self.imageView, duration: 1, options: .transitionFlipFromBottom, animations: {self.imageView.alpha = 0.0})
                         self.loadIntersAds()
                         
                     }
